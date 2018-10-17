@@ -54,6 +54,7 @@ type List struct {
 func (l *List) Init() *List {
 	l.root.next = &l.root
 	l.root.prev = &l.root
+	l.root.list = l
 	l.len = 0
 	return l
 }
