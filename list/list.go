@@ -20,6 +20,10 @@ type Element struct {
 	// element (l.Front()).
 	next, prev *Element
 
+	// Some element (orthogonally) away from here
+	// This element's away should point back to here
+	away *Element
+
 	// The list to which this element belongs.
 	list *List
 
@@ -54,6 +58,7 @@ type List struct {
 func (l *List) Init() *List {
 	l.root.next = &l.root
 	l.root.prev = &l.root
+	l.root.away = nil
 	l.root.list = l
 	l.len = 0
 	return l
@@ -112,6 +117,7 @@ func (l *List) remove(e *Element) *Element {
 	e.next.prev = e.prev
 	e.next = nil // avoid memory leaks
 	e.prev = nil // avoid memory leaks
+	//away = nil // no touch: MoveXyz functions use 'removes' followed by 'insert'
 	e.list = nil
 	l.len--
 	return e
@@ -125,6 +131,7 @@ func (l *List) Remove(e *Element) interface{} {
 		// if e.list == l, l must have been initialized when e was inserted
 		// in l or l == nil (e is a zero Element) and l.remove will crash
 		l.remove(e)
+		e.away = nil // avoid memory leaks
 	}
 	return e.Value
 }
