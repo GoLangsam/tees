@@ -11,8 +11,8 @@ import (
 
 func ExampleDancing() {
 	var d = list.NewDancing()
-//	var l = test.Board(100, 100)
-//	var l = test.NQueensR(10)
+	//  l = test.Board(100, 100)
+	//  l = test.NQueensR(10)
 	var l = test.SmallMatrix()
 	l.Dance(d)
 	// Output:

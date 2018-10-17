@@ -1,4 +1,4 @@
-﻿// Copyright 2016 Andreas Pannewitz. All rights reserved.
+// Copyright 2016 Andreas Pannewitz. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -44,25 +44,3 @@ func (l *List)    reList( d *Dancing ) { for i := l.root.prev; i != &l.root; i =
 
 func (e *Element) unList( d *Dancing ) { for i := e.next; i != e; i = i.next { if i != &e.list.root {	i.away.UnLeaf(d)	} } }
 func (e *Element) reList( d *Dancing ) { for i := e.prev; i != e; i = i.prev { if i != &e.list.root {	i.away.ReLeaf(d)	} } }
-
-/*
-- on Cols:
-	- l.fold()	l.unShow(col)			& unLink( Col-Head )
-	- l.open()	l.reShow(col)			& reLink( Col-Head )
-
-- on Rows - walking hori:
-	- e.fold()	e's.away.list.fold(col)		except e.list.root (row head)
-	- e.open()	e's.away.list.open(col)		except e.list.root (row head)
-
-- on Cols - walking vert: (no need to skip root explicitly, as it's called for l.root)
-	- l.unList()	l's.away.unList(row)
-	- l.reList()	l's.away.reList(row)
-
-- on Rows - walking hori:
-	- e.unList()	e's.away.unLink(col)		except e.list.root (row head)
-	- e.reList()	e's.away.reLink(col)		except e.list.root (row head)
-
-	- e.unLink()
-	- e.reLink()
-
-*/

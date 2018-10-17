@@ -41,8 +41,15 @@ func (l *List) ReLeaf(d *Dancing) {
 	}
 }
 
-func (e *Element) UnLeaf(d *Dancing) {          e.next.prev, e.prev.next = e.prev, e.next;		e.list.len--;	d.OnLeaf(e)	}
-func (e *Element) ReLeaf(d *Dancing) {          e.next.prev, e.prev.next = e, e;			e.list.len++			}
+func (e *Element) UnLeaf(d *Dancing) {
+	e.next.prev, e.prev.next = e.prev, e.next
+	e.list.len--
+	d.OnLeaf(e)
+}
+
+func (e *Element) ReLeaf(d *Dancing) {
+	e.next.prev, e.prev.next = e, e; e.list.len++
+}
 
 // ========================================================
 

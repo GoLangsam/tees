@@ -5,24 +5,24 @@
 package list
 
 type Dancing struct {
-	Dance   	func()
+	Dance func()
 
-	OnGoal		func(e *Element)
-	OnFail		func() *Element
-	OnLeaf		func(e *Element)
+	OnGoal func(e *Element)
+	OnFail func() *Element
+	OnLeaf func(e *Element)
 }
 
-func NewDancing() *Dancing {		// cannot pass CallBack upon New, as it is a method of himself
+func NewDancing() *Dancing { // cannot pass CallBack upon New, as it is a method of himself
 	return new(Dancing).init()
 }
 
 func (d *Dancing) init() *Dancing {
 
-	d.Dance		= func()		{return}
+	d.Dance = func() { return }
 
-	d.OnGoal	= func(e *Element)	{return}
-	d.OnFail	= func() *Element	{return nil}
-	d.OnLeaf	= func(e *Element)	{return}
+	d.OnGoal = func(e *Element) { return }
+	d.OnFail = func() *Element { return nil }
+	d.OnLeaf = func(e *Element) { return }
 
 	return d
 }

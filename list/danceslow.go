@@ -1,4 +1,4 @@
-﻿// Copyright 2016 Andreas Pannewitz. All rights reserved.
+// Copyright 2016 Andreas Pannewitz. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -15,21 +15,21 @@ package list
 // ========================================================
 
 // DanceSlow l is where the dancing begins
-func (l *List)     DanceSlow( d *Dancing ) {
+func (l *List) DanceSlow(d *Dancing) {
 	l.foldSlow(d)
-	l.Root().DanceSlow( d )
+	l.Root().DanceSlow(d)
 	l.openSlow(d)
 }
 
 // DanceSlow e is where the dancing continues
-func (e *Element)  DanceSlow( d *Dancing ) {
-	e.ForEachNext( func(i *Element){
-		d.OnGoal( i )		// Push
-		i.Away().foldSlow(d)
-		d.Dance()		// Dance d is where the dancing recurs to
-		i.Away().openSlow(d)
-		d.OnFail()		// Pop
-	} )
+func (e *Element) DanceSlow(d *Dancing) {
+	e.ForEachNext(func(i *Element) {
+		d.OnGoal(i)          // Push
+		i.Away().foldSlow(d) // fold
+		d.Dance()            // Dance d is where the dancing recurs to
+		i.Away().openSlow(d) // open
+		d.OnFail()           // Pop
+	})
 }
 
 // ========================================================
