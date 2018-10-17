@@ -11,7 +11,7 @@ import (
 
 // ===========================================================================
 
-// Stick returns a list of lenght N where each element is junk'ed with itself
+// Stick returns a list of length N where each element is junk'ed with itself
 func Stick(N int) *list.List {
 	var list = list.NewList("Stick")
 	list.Junk(list)
@@ -27,8 +27,8 @@ func Stick(N int) *list.List {
 	return list
 }
 
-// Ladder returns a list of lenght N where each element is junk'ed
-// with the corresponding element of a second list of same lenght N
+// Ladder returns a list of length N where each element is junk'ed
+// with the corresponding element of a second list of same length N
 func Ladder(N int) *list.List {
 	var left = list.NewList("LLeft")
 	var rigt = list.NewList("Right")

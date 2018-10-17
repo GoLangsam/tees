@@ -4,7 +4,7 @@
 
 /*
 away.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpfull, such as:
+with stuff, which is considered useful and helpful, such as:
 
 	- e.Junk (x *Element)	// cross-links Away's
 	- l.Junk (x *List)	// cross-links Away's of Root() of two lists

@@ -4,7 +4,7 @@
 
 /*
 link.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpfull, such as:
+with stuff, which is considered useful and helpful, such as:
 
 	- l.UnLeaf( d *Dancing )
 	- l.ReLeaf( d *Dancing )
