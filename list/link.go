@@ -48,7 +48,8 @@ func (e *Element) UnLeaf(d *Dancing) {
 }
 
 func (e *Element) ReLeaf(d *Dancing) {
-	e.next.prev, e.prev.next = e, e; e.list.len++
+	e.next.prev, e.prev.next = e, e
+	e.list.len++
 }
 
 // ========================================================
