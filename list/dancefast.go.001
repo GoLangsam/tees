@@ -1,0 +1,109 @@
+// Copyright 2016 Andreas Pannewitz. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+/*
+dancefast.go extends the (stolen and extended) list.go
+with stuff, which is considered useful and helpfull, such as:
+
+	- l.DanceFast( d Dancer )
+
+*/
+package list
+
+// ========================================================
+
+// DanceFast l is where the dancing begins
+func (l *List)     DanceFast( d Dancer ) {
+//	l.fold(d)
+//	l.root.away.unLink(d)
+	l.root.away.next.prev = l.root.away.prev
+	l.root.away.prev.next = l.root.away.next
+	l.root.away.list.len--
+//	l.unList(d)
+	for y := l.root.next; y != &l.root; y = y.next {
+//		y.away.unList(d)
+		for z := y.away.next; z != y.away; z = z.next {
+			if z != &l.root.list.root {
+	//			z.away.unLink(d)
+				z.away.next.prev = z.away.prev
+				z.away.prev.next = z.away.next
+				z.away.list.len--
+			}
+		}
+	}
+
+//	l.root.DanceFast( d )
+	for x := l.root.next; x != &l.root; x = x.next {
+		d.Push( x )		// Push
+//		x.away.fold(d)
+		for i := x.away.next; i != x.away; i = i.next {
+			if i != &x.away.list.root {
+//				i.away.list.fold(d)
+			//	i.away.list.root.away.unLink(d)
+				i.away.list.root.away.next.prev = i.away.list.root.away.prev
+				i.away.list.root.away.prev.next = i.away.list.root.away.next
+				i.away.list.root.away.list.len--
+
+			//	l.unList(d)
+				for y := i.away.list.root.next; y != &i.away.list.root; y = y.next {
+			//		y.away.unList(d)
+					for z := y.away.next; z != y.away; z = z.next {
+						if z != &y.away.list.root {
+				//			z.away.unLink(d)
+							z.away.next.prev = z.away.prev
+							z.away.prev.next = z.away.next
+							z.away.list.len--
+						}
+					}
+				}
+			}
+		}
+
+		d.Dance()			// Dance d is where the dancing recurs to
+//		i.away.open(d)
+		for i := x.away.prev; i != x.away; i = i.prev {
+			if i != &x.away.list.root {
+	//				i.away.list.open(d)
+			//	l.reList(d)
+				for y := i.away.list.root.prev; y != &i.away.list.root; y = y.prev {
+			//		y.away.reList(d)
+					for z := y.away.prev; z != y.away; z = z.prev {
+						if z != &y.away.list.root {
+				//			z.away.reLink(d)
+							z.away.next.prev = z.away
+							z.away.prev.next = z.away
+							z.away.list.len++
+						}
+					}
+				}
+
+			//	i.away.list.root.away.reLink(d)
+				i.away.list.root.away.next.prev = i.away.list.root.away
+				i.away.list.root.away.prev.next = i.away.list.root.away
+				i.away.list.root.away.list.len++
+			}
+		}
+		_ = d.Pop()			// Pop
+	}
+
+
+//	l.open(d)
+//	l.reList(d)
+	for y := l.root.prev; y != &l.root; y = y.prev {
+//		y.away.reList(d)
+		for z := y.away.prev; z != y.away; z = z.prev {
+			if z != &y.away.list.root {
+	//			z.away.reLink(d)
+				z.away.next.prev = z.away
+				z.away.prev.next = z.away
+				z.away.list.len++
+			}
+		}
+	}
+
+//	l.root.away.reLink(d)
+	l.root.away.next.prev = l.root.away
+	l.root.away.prev.next = l.root.away
+	l.root.away.list.len++
+}
