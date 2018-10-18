@@ -53,6 +53,7 @@ func (e *Element) PrintValue(args ...interface{}) {
 
 // ===========================================================================
 
+// PrintAtomValues prints each elements contents - front 'till end.
 func (l *List) PrintAtomValues(args ...interface{}) {
 	if l.print(args...) {
 		fmt.Print("List=")
@@ -68,6 +69,7 @@ func (l *List) PrintAtomValues(args ...interface{}) {
 	}
 }
 
+// PrintAtomValues iterates down through any composed values and prints their contents.
 func (e *Element) PrintAtomValues(args ...interface{}) {
 	if e.print(args...) {
 		fmt.Print("Element=")
