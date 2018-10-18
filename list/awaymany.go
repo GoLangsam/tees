@@ -11,10 +11,12 @@ with stuff, which is considered useful and helpful, such as:
 
 
 */
+
 package list
 
 // ===========================================================================
 
+// AwayLists returns a slice with all away lists.
 func (l *List) AwayLists() []*List {
 	var data = make([]*List, 0, l.Len())
 	for e := l.Front(); e != nil; e = e.Next() {
@@ -23,6 +25,8 @@ func (l *List) AwayLists() []*List {
 	return data
 }
 
+// AwayLists returns a slice with all away lists
+// of the list of e.
 func (e *Element) AwayLists() []*List {
 	return e.List().AwayLists()
 }

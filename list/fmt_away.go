@@ -10,6 +10,7 @@ with stuff, which is considered useful and helpful, such as:
 	- e.PrintAways()
 
 */
+
 package list
 
 import (
@@ -18,6 +19,7 @@ import (
 
 // ===========================================================================
 
+// PrintAways prints all away lists.
 func (l *List) PrintAways(args ...interface{}) {
 	if l.print(args...) {
 		//		fmt.Print( "List=" )
@@ -33,6 +35,7 @@ func (l *List) PrintAways(args ...interface{}) {
 	}
 }
 
+// PrintAways prints its away list.
 func (e *Element) PrintAways(args ...interface{}) {
 	if e.print(args...) {
 		if e.away == nil {

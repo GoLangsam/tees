@@ -7,8 +7,10 @@ dancefast.go extends the (stolen and extended) list.go
 with stuff, which is considered useful and helpful, such as:
 
 	- l.DanceFast( d *Dancing )
+	- e.DanceFast( d *Dancing )
 
 */
+
 package list
 
 // ========================================================
@@ -78,6 +80,8 @@ func (l *List) DanceFast(d *Dancing) {
 	l.root.away.list.len++
 }
 
+// DanceFast e is where the dancing continues.
+//  Note: You must not call this directly - implemented only for symmetry, see interface Spot.
 func (e *Element) DanceFast(d *Dancing) {
-	panic("You cannot use this directly - implemented only for symmetry, see interface Spot")
+	panic("You cannot call this directly - implemented only for symmetry, see interface Spot")
 }

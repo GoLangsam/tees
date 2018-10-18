@@ -25,6 +25,7 @@ package list
 
 // ========================================================
 
+// Unleaf removes it temporarily.
 func (l *List) UnLeaf(d *Dancing) {
 	for e := l.root.next; e != &l.root; e = e.next {
 		e.next.prev = e.prev
@@ -33,6 +34,8 @@ func (l *List) UnLeaf(d *Dancing) {
 		d.OnLeaf(e)
 	}
 }
+
+// Releaf restores the temporarily Unleaf'ed/removed one.
 func (l *List) ReLeaf(d *Dancing) {
 	for e := l.root.prev; e != &l.root; e = e.prev {
 		e.next.prev = e
@@ -41,12 +44,14 @@ func (l *List) ReLeaf(d *Dancing) {
 	}
 }
 
+// Unleaf removes it temporarily.
 func (e *Element) UnLeaf(d *Dancing) {
 	e.next.prev, e.prev.next = e.prev, e.next
 	e.list.len--
 	d.OnLeaf(e)
 }
 
+// Releaf restores the temporarily Unleaf'ed/removed one.
 func (e *Element) ReLeaf(d *Dancing) {
 	e.next.prev, e.prev.next = e, e
 	e.list.len++

@@ -19,6 +19,7 @@ with stuff, which is considered useful and helpful, such as:
 	- e.IsAtom()			bool
 
 */
+
 package list
 
 // ComposedValue aliases the Element.Value of IsComposed() Elements

@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// package main
 package test
 
 import (
@@ -40,18 +39,23 @@ func width(anz int64) int {
 	}
 }
 
-func GetFormatWidthPaddingZeros(anz int64) string {
+func getFormatWidthPaddingZeros(anz int64) string {
 	return "%0" + fmt.Sprintf("%d", width(anz)) + "d"
 }
 
-func GetFormatWidthPaddingSpaces(anz int64) string {
+func getFormatWidthPaddingSpaces(anz int64) string {
 	return "% " + fmt.Sprintf("%d", width(anz)) + "d"
 }
 
+// IDs returns a slice of size-adjusted IDs.
 func IDs(prefix string, anz int) []string {
 
 	var s = make([]string, 0, anz)
-	var f = "%s" + GetFormatWidthPaddingZeros(int64(anz))
+	var f = "%s" + getFormatWidthPaddingZeros(int64(anz))
+
+	if prefix == "" {
+		f = "%s" + getFormatWidthPaddingSpaces(int64(anz))
+	}
 
 	for i := 0; i < anz; i++ {
 		id := fmt.Sprintf(f, prefix, i+1)

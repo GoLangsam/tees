@@ -8,7 +8,7 @@ import (
 	"github.com/GoLangsam/tees/list"
 )
 
-// FiveQueens
+// FiveQueens returns a handmade 5-Queen matrix.
 func FiveQueens() *list.List {
 	var cols = list.NewList("Board")
 

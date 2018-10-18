@@ -19,6 +19,7 @@ Thus, "ForEach" is not really safe to expose to clients.
 Note: using e.g. some Walker from "dlx/list/walk" or "dlx/trix/walk"
 allows more natural control flow with continue/break/return etc.
 */
+
 package list
 
 // ForEachNext applies function f to each element of the list l in natural order.

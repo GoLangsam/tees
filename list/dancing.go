@@ -4,6 +4,7 @@
 
 package list
 
+// Dancing holds the dance functions.
 type Dancing struct {
 	Dance func()
 
@@ -12,6 +13,7 @@ type Dancing struct {
 	OnLeaf func(e *Element)
 }
 
+// NewDancing returns a new dancing.
 func NewDancing() *Dancing { // cannot pass CallBack upon New, as it is a method of himself
 	return new(Dancing).init()
 }

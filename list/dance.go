@@ -10,6 +10,7 @@ with stuff, which is considered useful and helpful, such as:
 	- e.Dance( d *Dancing )
 
 */
+
 package list
 
 // ========================================================
@@ -24,11 +25,11 @@ func (l *List)     Dance( d *Dancing ) {
 // Dance e is where the dancing continues
 func (e *Element)  Dance( d *Dancing ) {
 	for i := e.next; i != e; i = i.next {
-		d.OnGoal( i )		// Push
-		i.away.fold(d)
-		d.Dance()		// Dance d is where the dancing recurs to
-		i.away.open(d)
-		d.OnFail()		// Pop
+		d.OnGoal( i )  // Push
+		i.away.fold(d) // fold
+		d.Dance()      // Dance d is where the dancing recurs to
+		i.away.open(d) // open
+		d.OnFail()     // Pop
 	}
 }
 
