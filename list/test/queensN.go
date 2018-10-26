@@ -58,6 +58,6 @@ func NQueensR(N int) *list.List {
 			rowi++
 		}
 	}
-	rows.Junk(r)
+	rows.Join(r)
 	return r
 }

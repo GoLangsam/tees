@@ -33,7 +33,7 @@ func SmallMatrix() *list.List {
 	*/
 
 	var rows = list.NewList("Rows")
-	rows.Root().Junk(cols.Root())
+	rows.Join(cols)
 
 	rows = list.NewList("Dis-Disorderd Rows")
 

@@ -7,7 +7,7 @@ away.go extends the (stolen and extended) list.go
 with stuff, which is considered useful and helpful, such as:
 
 	- e.Junk (x *Element)	// cross-links Away's
-	- l.Junk (x *List)	// cross-links Away's of Root() of two lists
+	- l.Join (x *List)	// cross-links Away's of Root() of two lists
 
 	- l.Away()		*Element
 	- e.Away()		*Element
@@ -20,12 +20,13 @@ with stuff, which is considered useful and helpful, such as:
 	- l.Home()		*Element
 	- e.Home()		*Element
 
-	- l.Junks( *List )	bool
+	- l.Joins( *List )	bool
 	- e.Junks( *Element )	bool
 
 	- l.IsSolo()		bool
 	- e.IsSolo()		bool
 
+	- l.IsJunk()		bool
 	- e.IsJunk()		bool
 
 */
@@ -124,8 +125,8 @@ func (e *Element) SetAway(away *Element) {
 // ===========================================================================
 // Binary func(...)
 
-// Junk links another lists Root() as a mutual Junc-tion of their Away's
-func (l *List) Junk(x *List) {
+// Join links another lists Root() as a mutual Junc-tion of their Away's
+func (l *List) Join(x *List) {
 	l.Root().Junk(x.Root())
 }
 
@@ -150,8 +151,9 @@ func (e *Element) Junk(x *Element) {
 // ===========================================================================
 // Binary => bool
 
-// Junks reports whether the roots of l and t are Junk'ed
-func (l *List) Junks(t *List) bool {
+// Joins reports whether l and t are joined, meaning
+// the roots of l and t are Junk'ed.
+func (l *List) Joins(t *List) bool {
 	return (l.root.away == &t.root) && (t.root.away == &l.root)
 	//	return l.Root().Junks(t.Root()) is less fast
 }

@@ -47,7 +47,7 @@ func FiveQueens() *list.List {
 	var B6 = scnd.AddBeam("B6")
 	var B7 = scnd.AddBeam("B7")
 	var B8 = scnd.AddBeam("B8")
-	diag.Junk(scnd)
+	diag.Join(scnd)
 
 	var rows = list.NewList("Rows")
 
@@ -81,6 +81,6 @@ func FiveQueens() *list.List {
 	rows.AddJunk("R-42", R4, F2, A6, B1)
 	rows.AddJunk("R-43", R4, F3, A7, B2)
 	rows.AddJunk("R-44", R4, F4, A8, B3)
-	cols.Junk(rows)
+	cols.Join(rows)
 	return cols
 }

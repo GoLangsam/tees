@@ -5,22 +5,22 @@
 package test
 
 import (
+	"github.com/GoLangsam/tees"
 	"github.com/GoLangsam/tees/list"
-	"github.com/GoLangsam/tees/list/iter"
 )
 
 // ===========================================================================
 
 // Stick returns a list of length N where each element is junk'ed with itself
 func Stick(N int) *list.List {
-	var list = list.NewList("Stick")
-	list.Junk(list)
+	var list = tees.New("Stick")
+	list.Join(list)
 
 	for _, id := range IDs("S-", N) {
 		list.PushBack(id)
 	}
 
-	var next = iter.Zipper(list, list)
+	var next = tees.Zipp(list, list)
 	for x, y := next(); x != nil && y != nil; x, y = next() {
 		x.Junk(y)
 	}
@@ -30,9 +30,9 @@ func Stick(N int) *list.List {
 // Ladder returns a list of length N where each element is junk'ed
 // with the corresponding element of a second list of same length N
 func Ladder(N int) *list.List {
-	var left = list.NewList("LLeft")
-	var rigt = list.NewList("Right")
-	left.Junk(rigt)
+	var left = tees.New("LLeft")
+	var rigt = tees.New("Right")
+	left.Join(rigt)
 
 	for _, id := range IDs("L-", N) {
 		left.PushBack(id)
@@ -41,7 +41,7 @@ func Ladder(N int) *list.List {
 		rigt.PushBack(id)
 	}
 
-	var next = iter.Zipper(left, rigt)
+	var next = tees.Zipp(left, rigt)
 	for x, y := next(); x != nil && y != nil; x, y = next() {
 		x.Junk(y)
 	}

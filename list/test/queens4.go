@@ -51,7 +51,7 @@ func FourQueens() *list.List {
 	var B5 = scnd.AddBeam("B5")
 	var B6 = scnd.AddBeam("B6")
 
-	diag.Junk(scnd)
+	diag.Join(scnd)
 
 	var rows = list.NewList("Rows")
 
@@ -76,6 +76,6 @@ func FourQueens() *list.List {
 	rows.AddJunk("R-32", R3, F2, A5, B2)
 	rows.AddJunk("R-33", R3, F3, A6, B3)
 
-	cols.Junk(rows)
+	cols.Join(rows)
 	return cols
 }

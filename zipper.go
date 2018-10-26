@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package iter
+package tees
 
 import (
 	"github.com/GoLangsam/tees/list"
@@ -10,8 +10,8 @@ import (
 
 // ===========================================================================
 
-// Zipper returns an iterator over pairs of (x,y)'s
-func Zipper(X, Y *list.List) func() (*list.Element, *list.Element) {
+// Zipp returns an iterator function returning successive pairs.
+func Zipp(X, Y CanIter) func() (*list.Element, *list.Element) {
 	var x = X.Front()
 	var y = Y.Front()
 

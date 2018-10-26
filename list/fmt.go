@@ -40,7 +40,7 @@ func (l *List) Print(args ...interface{}) {
 // PrintValue of l.Root()
 func (l *List) PrintValue(args ...interface{}) {
 	if l.print(args...) {
-		l.Root().PrintValue()
+		l.Root().printAtomValues()
 	}
 }
 

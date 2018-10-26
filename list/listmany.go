@@ -7,10 +7,8 @@ listmany.go extends the (stolen and extended) list.go
 with stuff, which is considered useful and helpful, such as:
 
 	- l.Elements()		[]*Element
-	- e.Elements()		[]*Element
 
 	- l.Values()		Values
-	- e.Values()		Values
 
 	- l.ValuesPushBack( v... )
 	- l.ValuesPushFront( v... )
@@ -35,12 +33,6 @@ func (l *List) Elements() []*Element {
 	return data
 }
 
-// Elements returns the Elements as a slice
-// of the list of the element (syntactic sugar)
-func (e *Element) Elements() []*Element {
-	return e.List().Elements()
-}
-
 // Values returns all Element.Values as Values-slice
 func (l *List) Values() Values {
 	var data = make([]interface{}, 0, l.Len())
@@ -48,12 +40,6 @@ func (l *List) Values() Values {
 		data = append(data, e.Value)
 	}
 	return data
-}
-
-// Values returns all Element.Values of e.List()
-// as Values-slice (syntactic sugar)
-func (e *Element) Values() Values {
-	return e.List().Values()
 }
 
 // ===========================================================================

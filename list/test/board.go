@@ -23,6 +23,6 @@ func Board(N, M int) *list.List {
 		f.AddJunk(id, rc...)
 	}
 
-	r.Junk(f)
+	r.Join(f)
 	return r
 }
