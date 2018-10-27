@@ -23,7 +23,7 @@ func NQueensR(N int) *list.List {
 
 // Note: not really relevant, just for clarification :-)
 //	var p = list.NewList( "Primary" )
-	var s = list.NewList( "Secondary" )
+	var s = list.NewList("Secondary")
 
 //	p.AddList(r)
 	s.AddList(f)
