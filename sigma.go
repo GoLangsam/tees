@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package math
+package tees
 
 import (
 	"github.com/GoLangsam/tees/list"
@@ -19,7 +19,7 @@ import (
 // Sigma returns the sum of the results of applying a given function f to each element of list l
 func Sigma(
 	f func(*list.Element) int,
-	l *list.List,
+	l CanIter,
 ) int {
 	if l == nil {
 		return 0
@@ -39,7 +39,7 @@ func Sigma(
 //	FoldInt(func(e *list.Element, r int) int {return r + f(e)}, l, 0)
 func SigmaInt(
 	f func(*list.Element) int,
-	l *list.List,
+	l CanIter,
 ) int {
 	return FoldInt(func(e *list.Element, r int) int { return r + f(e) }, l, 0)
 }

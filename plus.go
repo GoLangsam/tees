@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package math
+package tees
 
 import (
 	"github.com/GoLangsam/tees/list"
@@ -14,7 +14,7 @@ import (
 // the root of which carries the CVs of the original l.Root()
 // and the elements carry the CVs of the original elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func Append(l *list.List, lists ...*list.List) *list.List {
+func Append(l Calcer, lists ...*list.List) *list.List {
 	n := len(lists)
 	switch {
 	case n == 0:
@@ -28,15 +28,15 @@ func Append(l *list.List, lists ...*list.List) *list.List {
 
 // ===========================================================================
 
-// plus returns a new list with len(l) + len(X) Elements
-// representing the union of the list l plus X
+// plus returns a new list with len(X) + len(Y) Elements
+// representing the union of the list X plus Y
 // Note: plus(X, nil ) returns a new copy of X with composedValues
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func plus(X, Y *list.List) *list.List {
+func plus(X Calcer, Y *list.List) *list.List {
 	if X == nil {
-		return list.NewList(nil)
+		return New(nil)
 	}
-	newl := list.NewList(X.CVs())
+	newl := New(X.CVs())
 	for x := X.Front(); x != nil; x = x.Next() {
 		newl.PushBack(x.CVs())
 	}

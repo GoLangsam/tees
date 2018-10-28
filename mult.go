@@ -2,11 +2,17 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package math
+package tees
 
 import (
 	"github.com/GoLangsam/tees/list"
 )
+
+type Calcer interface {
+	CanIter
+	CVs() *list.ComposedValue
+	With(*list.List) *list.ComposedValue
+}
 
 // Times returns a new list: the cross product of l with some lists...
 // ( recursively as [[[ l * l ] * l ] ... ] )
@@ -14,7 +20,7 @@ import (
 // the root of which carries the CVs of the original l.Root()
 // and the elements carry the CVs of the original elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func Times(l *list.List, lists ...*list.List) *list.List {
+func Times(l Calcer, lists ...*list.List) *list.List {
 	n := len(lists)
 	switch {
 	case n == 0:
@@ -32,11 +38,11 @@ func Times(l *list.List, lists ...*list.List) *list.List {
 // representing the cross-product of the list X * Y
 // Note: l.times( nil ) returns a new list with no elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func times(X, Y *list.List) *list.List {
+func times(X Calcer, Y *list.List) *list.List {
 	if X == nil {
-		return list.NewList(nil)
+		return New(nil)
 	}
-	newl := list.NewList(X.CVs())
+	newl := New(X.CVs())
 	if Y != nil {
 		for x := X.Front(); x != nil; x = x.Next() {
 			for y := Y.Front(); y != nil; y = y.Next() {

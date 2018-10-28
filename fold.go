@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package math
+package tees
 
 import (
 	"github.com/GoLangsam/tees/list"
@@ -16,7 +16,7 @@ import (
 // FoldAny folds a list (from front to next) using f and initial
 func FoldAny(
 	f func(*list.Element, interface{}) interface{},
-	l *list.List,
+	l CanIter,
 	initial interface{}) interface{} {
 	if l == nil {
 		return initial
@@ -32,7 +32,7 @@ func FoldAny(
 // FoldInt folds a list (from front to next) using f(*Element, int) and initial
 func FoldInt(
 	f func(*list.Element, int) int,
-	l *list.List,
+	l CanIter,
 	initial int) int {
 	if l == nil {
 		return initial
@@ -48,7 +48,7 @@ func FoldInt(
 // FoldString folds a list (from front to next) using f(*Element, string) and initial
 func FoldString(
 	f func(*list.Element, string) string,
-	l *list.List,
+	l CanIter,
 	initial string) string {
 	if l == nil {
 		return initial
