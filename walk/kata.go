@@ -30,11 +30,11 @@ func (steps Kata) From(e Here) (Here, Distance) {
 // until nil or same is found
 // Note: Grab may be useful in debugging, as it returns a full trace
 // To Grab is not intended for regular use - Don't be greedy :-)
-func (steps Kata) Grab(e Here) ([]Here, Distance) {
+func (steps Kata) Grab(e Here) (Trail, Distance) {
 	var dist, dnow Distance
 	var goal = e
 	last := goal
-	goals := make([]Here, 0, len(steps))
+	goals := make(Trail, 0, len(steps))
 	for _, step := range steps {
 		last = goal
 		goal, dnow = step.from(goal)
@@ -51,11 +51,11 @@ func (steps Kata) Grab(e Here) ([]Here, Distance) {
 
 // Haul returns the Heres (or nil) From e by repeating steps
 // until nil or seen is found
-func (steps Kata) Haul(e Here) ([]Here, Distance) {
+func (steps Kata) Haul(e Here) (Trail, Distance) {
 	var seen = make(map[Here]bool)
 	var dist, dnow Distance
 	var goal = e
-	goals := make([]Here, 0, len(steps)*8)
+	goals := make(Trail, 0, len(steps)*8)
 	for {
 		goal, dnow = steps.From(goal)
 		if goal == nil || seen[goal] {

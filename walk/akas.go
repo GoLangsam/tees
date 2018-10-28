@@ -9,11 +9,11 @@ type Akas []Kata // Burmese
 
 // ========================================================
 
-// From returns the non-nil Heres reached from e by jumps
-func (jumps Akas) From(e Here) ([]Here, Distance) {
+// From returns the trail of non-nil Heres reached from e by jumps
+func (jumps Akas) From(e Here) (Trail, Distance) {
 	var dist, dnow Distance
 	var goal = e
-	goals := make([]Here, 0, len(jumps))
+	goals := make(Trail, 0, len(jumps))
 	for _, steps := range jumps {
 		goal, dnow = steps.From(e)
 		if goal == nil {
@@ -30,9 +30,9 @@ func (jumps Akas) From(e Here) ([]Here, Distance) {
 // Grab returns all Heres reached from e by jumps
 // Note: Grab may be useful in debugging, as it returns a full trace
 // To Grab is not intended for regular use - Don't be greedy :-)
-func (jumps Akas) Grab(e Here) ([]Here, Distance) {
+func (jumps Akas) Grab(e Here) (Trail, Distance) {
 	var dist Distance
-	goals := make([]Here, 0, len(jumps)*len(jumps))
+	goals := make(Trail, 0, len(jumps)*len(jumps))
 	for _, steps := range jumps {
 		goal, dnow := steps.Grab(e)
 		if goal == nil || len(goal) == 0 {
@@ -49,9 +49,9 @@ func (jumps Akas) Grab(e Here) ([]Here, Distance) {
 // Haul returns the Heres (or nil) From e by hauling jumps
 // Note: From any new goal, just the current Kata is repeated!
 // Not all jumps are done again - this would imply loops.
-func (jumps Akas) Haul(e Here) ([]Here, Distance) {
+func (jumps Akas) Haul(e Here) (Trail, Distance) {
 	var dist Distance
-	goals := make([]Here, 0, len(jumps)*len(jumps)*8)
+	goals := make(Trail, 0, len(jumps)*len(jumps)*8)
 	for _, steps := range jumps {
 		goal, dnow := steps.Haul(e)
 		if goal == nil || len(goal) == 0 {

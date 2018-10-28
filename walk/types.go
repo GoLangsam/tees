@@ -8,5 +8,8 @@ import (
 	"github.com/GoLangsam/tees/list"
 )
 
-// Here represents the individuum.
+// Here is where You are - and wherever You walk to.
 type Here = *list.Element
+
+// Trail is a series of `Here` marks.
+type Trail = []*list.Element

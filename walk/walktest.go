@@ -11,8 +11,8 @@ import (
 // KataAkas common interface
 type KataAkas interface {
 	//	From(Here) has to have differing returns!
-	Grab(Here) ([]Here, Distance)
-	Haul(Here) ([]Here, Distance)
+	Grab(Here) (Trail, Distance)
+	Haul(Here) (Trail, Distance)
 	PrintFullWalk(Here)
 	PrintWalker(string, Here)
 	Walker(Here) Walk

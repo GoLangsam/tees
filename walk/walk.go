@@ -24,7 +24,7 @@ type GoTo uint8 // func( from Here ) (to Here)
 
 // Distance represents the 'length' of some movement
 // for a Kata it is the sum of it's GoTo distances
-// for a Atas it is the 'radius', that is the max of it's Kata's distances
+// for a Atas it is the 'radius', the max of it's Kata's distances
 type Distance int
 
 const (
