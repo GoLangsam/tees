@@ -9,49 +9,49 @@ package tees
 // foldr _ z [] = z
 // foldr f z (x:xs) = f x (foldr f z xs)
 
-// FoldAny folds a list (from front to next) using f and initial
+// FoldAny folds Tees using f and initial
 func FoldAny(
-	f func(This, interface{}) interface{},
-	l Iterator,
+	f func(*aTee, interface{}) interface{},
+	i iterator,
 	initial interface{}) interface{} {
-	if l == nil {
+	if i == nil {
 		return initial
 	}
 
 	var result = initial
-	for e := l.Front(); e != nil; e = e.Next() {
+	for e := i.Front(); e != nil; e = e.Next() {
 		result = f(e, result)
 	}
 	return result
 }
 
-// FoldInt folds a list (from front to next) using f(*Element, int) and initial
+// FoldInt folds Tees using f(*aTee, int) and initial
 func FoldInt(
-	f func(This, int) int,
-	l Iterator,
+	f func(*aTee, int) int,
+	i iterator,
 	initial int) int {
-	if l == nil {
+	if i == nil {
 		return initial
 	}
 
 	var result = initial
-	for e := l.Front(); e != nil; e = e.Next() {
+	for e := i.Front(); e != nil; e = e.Next() {
 		result = f(e, result)
 	}
 	return result
 }
 
-// FoldString folds a list (from front to next) using f(*Element, string) and initial
+// FoldString folds Tees using f(*aTee, string) and initial
 func FoldString(
-	f func(This, string) string,
-	l Iterator,
+	f func(*aTee, string) string,
+	i iterator,
 	initial string) string {
-	if l == nil {
+	if i == nil {
 		return initial
 	}
 
 	var result = initial
-	for e := l.Front(); e != nil; e = e.Next() {
+	for e := i.Front(); e != nil; e = e.Next() {
 		result = f(e, result)
 	}
 	return result

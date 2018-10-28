@@ -7,9 +7,9 @@ package tees
 // ========================================================
 
 // Dance e is where the dancing begins.
-func Dance(e Dancer, d Dancing) {
+func Dance(e dancer, d Dancing) {
 	unC(e) //   fold Col
-	forEachNext(e, func(i This) {
+	forEachNext(e, func(i *aTee) {
 		d.OnGoal(i)   // Publish candidate
 		unR(i.Away()) //   fold Row
 		d.Dance()     // Dance d is where the dancing recurs to
@@ -20,19 +20,19 @@ func Dance(e Dancer, d Dancing) {
 }
 
 // ========================================================
-func unC(c Dancer) { c.Away().UnLink(); unL(c) }
-func reC(c Dancer) { c.Away().ReLink(); reL(c) }
+func unC(c dancer) { c.Away().UnLink(); unL(c) }
+func reC(c dancer) { c.Away().ReLink(); reL(c) }
 
-func unR(r Dancer) { forEachNext(r, func(i This) { unC(i.Away().List()) }) }
-func reR(r Dancer) { forEachPrev(r, func(i This) { reC(i.Away().List()) }) }
+func unR(r dancer) { forEachNext(r, func(i *aTee) { unC(i.Away().List()) }) }
+func reR(r dancer) { forEachPrev(r, func(i *aTee) { reC(i.Away().List()) }) }
 
-func unL(l Dancer) { forEachNext(l, func(i This) { unE(i.Away()) }) }
-func reL(l Dancer) { forEachPrev(l, func(i This) { reE(i.Away()) }) }
+func unL(l dancer) { forEachNext(l, func(i *aTee) { unE(i.Away()) }) }
+func reL(l dancer) { forEachPrev(l, func(i *aTee) { reE(i.Away()) }) }
 
-func unE(e Dancer) { forEachNext(e, func(i This) { i.Away().UnLink() }) }
-func reE(e Dancer) { forEachPrev(e, func(i This) { i.Away().ReLink() }) }
+func unE(e dancer) { forEachNext(e, func(i *aTee) { i.Away().UnLink() }) }
+func reE(e dancer) { forEachPrev(e, func(i *aTee) { i.Away().ReLink() }) }
 
 // ========================================================
 
-func forEachNext(s Dancer, f func(This)) { s.ForEachNext(f) }
-func forEachPrev(s Dancer, f func(This)) { s.ForEachPrev(f) }
+func forEachNext(s dancer, f func(*aTee)) { s.ForEachNext(f) }
+func forEachPrev(s dancer, f func(*aTee)) { s.ForEachPrev(f) }

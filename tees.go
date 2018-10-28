@@ -17,19 +17,19 @@ func New(v interface{}, vals ...interface{}) Tees {
 
 // ========================================================
 
-// This is it - an indivisible individuum, an atom.
-type This = *list.Element
+// aTee is it - an indivisible individuum, an atom.
+type aTee = list.Element
 
-// Tees is a collection of This'ses.
+// Tees is a collection of aTee's.
 type Tees = *list.List
 
 // ========================================================
 
-// Dancing holds what This needs in order to Dance.
+// Dancing holds what it needs in order to Dance.
 type Dancing = *list.Dancing
 
-// A Dancer loves dancing his Dance.
-type Dancer interface {
+// A dancer loves dancing his Dance.
+type dancer interface {
 	Away() *list.Element
 	ForEachNext(f func(*list.Element))
 	ForEachPrev(f func(*list.Element))
@@ -37,8 +37,8 @@ type Dancer interface {
 
 // ========================================================
 
-// Iterator allows to iterate forward by starting with Front() and, if non-nil, repeating Next() until Next() returns nil
-type Iterator interface {
+// iterator allows to iterate forward by starting with Front() and, if non-nil, repeating Next() until Next() returns nil
+type iterator interface {
 	Front() *list.Element
 	Next() *list.Element
 	ForEachNext(f func(*list.Element))
@@ -46,31 +46,31 @@ type Iterator interface {
 
 // trailer represents a finite iterator with known lenght
 type trailer interface {
-	Iterator
+	iterator
 	Len() int
 }
 
-// Xrosser supports constructions such as Xross
-type Xrosser interface {
+// xrosser supports constructions such as Xross
+type xrosser interface {
 	trailer
 	CVs() *list.ComposedValue
 }
 
-// Calcer supports calculations such as Append and Times
-type Calcer interface {
-	Iterator
+// calcer supports calculations such as Append and Times
+type calcer interface {
+	iterator
 	CVs() *list.ComposedValue
 	With(*list.List) *list.ComposedValue
 }
 
-// A Line may be parallel to another Line
-type Line interface {
+// A line may be parallel to another line
+type line interface {
 	List() *list.List
 	Root() *list.Element
 }
 
-// A Border may be an Edge
-type Border interface {
+// A edge may be an Edge
+type edge interface {
 	Away() *list.Element
 	IsRoot() bool
 }

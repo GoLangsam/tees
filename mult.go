@@ -10,7 +10,7 @@ package tees
 // the root of which carries the CVs of the original l.Root()
 // and the elements carry the CVs of the original elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func Times(l Calcer, lists ...Tees) Tees {
+func Times(l calcer, lists ...Tees) Tees {
 	n := len(lists)
 	switch {
 	case n == 0:
@@ -28,7 +28,7 @@ func Times(l Calcer, lists ...Tees) Tees {
 // representing the cross-product of the list X * Y
 // Note: l.times( nil ) returns a new list with no elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func times(X Calcer, Y Tees) Tees {
+func times(X calcer, Y Tees) Tees {
 	if X == nil {
 		return New(nil)
 	}

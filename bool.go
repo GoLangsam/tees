@@ -8,7 +8,7 @@ package tees
 // boolean - unary
 
 // IsEdge determines, if it makes sense to go further upward from x
-func IsEdge(x Border) bool {
+func IsEdge(x edge) bool {
 	//	if x == nil { return false }
 	//	if x.IsNode() { return false }
 	//	if x.IsSolo() { return true }
@@ -16,11 +16,11 @@ func IsEdge(x Border) bool {
 }
 
 // ===========================================================================
-// boolean - binnary
+// boolean - binary
 
 // AreParallel reports if two lines are parallel with each other.
 //	Note: nil is NOT considered parallel to nil
-func AreParallel(x, y Line) bool {
+func AreParallel(x, y line) bool {
 	if x == nil || y == nil {
 		return false
 	}

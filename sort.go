@@ -10,7 +10,7 @@ import (
 
 // Arrange sorts t in place according to weight.
 // The sort is stable.
-func Arrange(t Tees, weight func(This) int) Tees {
+func Arrange(t Tees, weight func(*aTee) int) Tees {
 	if t.Len() < 1 {
 		return t
 	}
@@ -22,7 +22,7 @@ func Arrange(t Tees, weight func(This) int) Tees {
 
 // Stable sorts these in place according to less.
 // The sort is stable.
-func Stable(these []This, less func(i, j int) bool) Tees {
+func Stable(these []*aTee, less func(i, j int) bool) Tees {
 	if len(these) < 1 {
 		return nil
 	}
@@ -39,9 +39,9 @@ func Stable(these []This, less func(i, j int) bool) Tees {
 // Weight returns both:
 //  a map of the elements with their respective weight and
 //  a map of the weights with their elements
-func Weight(t trailer, weight func(This) int) (map[This]int, map[int][]This) {
-	var elems = make(map[This]int, t.Len())
-	var sizes = make(map[int][]This, t.Len())
+func Weight(t trailer, weight func(*aTee) int) (map[*aTee]int, map[int][]*aTee) {
+	var elems = make(map[*aTee]int, t.Len())
+	var sizes = make(map[int][]*aTee, t.Len())
 
 	var size int
 	for e := t.Front(); e != nil; e = e.Next() {

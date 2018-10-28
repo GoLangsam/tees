@@ -7,11 +7,11 @@ package tees
 // ===========================================================================
 
 // Zipp returns an iterator function returning successive pairs.
-func Zipp(X, Y Iterator) func() (This, This) {
+func Zipp(X, Y iterator) func() (*aTee, *aTee) {
 	var x = X.Front()
 	var y = Y.Front()
 
-	return func() (This, This) {
+	return func() (*aTee, *aTee) {
 		var currx = x
 		var curry = y
 		if x != nil {

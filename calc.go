@@ -9,7 +9,7 @@ package tees
 // Xross returns a new list: the cross product of X with Y
 //	the returned list is a handle to the X-Dimension
 //	the elements are Junk'ed
-func Xross(X, Y Xrosser) Tees {
+func Xross(X, Y xrosser) Tees {
 
 	cols := make([]Tees, 0, X.Len())
 

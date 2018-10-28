@@ -10,7 +10,7 @@ package tees
 // the root of which carries the CVs of the original l.Root()
 // and the elements carry the CVs of the original elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func Append(l Calcer, lists ...Tees) Tees {
+func Append(l calcer, lists ...Tees) Tees {
 	n := len(lists)
 	switch {
 	case n == 0:
@@ -28,7 +28,7 @@ func Append(l Calcer, lists ...Tees) Tees {
 // representing the union of the list X plus Y
 // Note: plus(X, nil ) returns a new copy of X with composedValues
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func plus(X Calcer, Y Tees) Tees {
+func plus(X calcer, Y Tees) Tees {
 	if X == nil {
 		return New(nil)
 	}
