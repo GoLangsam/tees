@@ -4,13 +4,13 @@
 
 /*
 
-"GoTo" is an alias for a kind of function to reach another existing element (or nil) from some element e
+"GoTo" is an alias for a kind of function to reach another existing Here (or nil) from some Here e
 
-"From" returns the *list.Element (or nil) reached from e by applying some Kata's (=[]GoTo)
+"From" returns the Here (or nil) reached from e by applying some Kata's (=[]GoTo)
 
-"Grab" is greedy and returns the slice of all *list.Element reached from e
+"Grab" is greedy and returns the slice of all Here reached from e
 
-"Haul" is steady and returns the slice of *list.Element reached from e keeping going until seen or nil
+"Haul" is steady and returns the slice of Here reached from e keeping going until seen or nil
 
 "Walker" returns an hauling iterator
 
@@ -19,12 +19,8 @@ TODO: "Turner" returns an hauling iterator roundrobbing it's akas
 
 package walk
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
 // GoTo's represent basic functions to Step from some element to another existing element (or nil)
-type GoTo uint8 // func( *list.Element ) *list.Element
+type GoTo uint8 // func( from Here ) (to Here)
 
 // Distance represents the 'length' of some movement
 // for a Kata it is the sum of it's GoTo distances
@@ -45,14 +41,14 @@ const (
 //
 //  next := kata.Walker(e)
 //  for e := next(), e != nil, e = next() { /* ... */ }
-type Walk func() *list.Element
+type Walk func() Here
 
 // ========================================================
-// from returns the Element (or nil) reached from e by applying GoTo
-func (g GoTo) from(e *list.Element) (*list.Element, Distance) {
+// from returns the Here (or nil) reached from e by applying GoTo
+func (g GoTo) from(e Here) (Here, Distance) {
 
 	var dist Distance = 0
-	var next *list.Element = e
+	var next Here = e
 
 	if e != nil {
 		switch g {

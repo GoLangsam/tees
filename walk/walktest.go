@@ -5,22 +5,20 @@
 package walk
 
 import (
-	"github.com/GoLangsam/tees/list"
-
 	"fmt"
 )
 
 // KataAkas common interface
 type KataAkas interface {
-	//	From(*list.Element) has to have differing returns!
-	Grab(*list.Element) ([]*list.Element, Distance)
-	Haul(*list.Element) ([]*list.Element, Distance)
-	PrintFullWalk(*list.Element)
-	PrintWalker(string, *list.Element)
-	Walker(*list.Element) Walk
+	//	From(Here) has to have differing returns!
+	Grab(Here) ([]Here, Distance)
+	Haul(Here) ([]Here, Distance)
+	PrintFullWalk(Here)
+	PrintWalker(string, Here)
+	Walker(Here) Walk
 }
 
-func (steps Kata) PrintFullWalk(e *list.Element) {
+func (steps Kata) PrintFullWalk(e Here) {
 	fmt.Print("From: ")
 	from, d := steps.From(e)
 	e.PrintValue()
@@ -57,7 +55,7 @@ func (steps Kata) PrintFullWalk(e *list.Element) {
 	fmt.Printf("\tDistance: %v\n", d)
 }
 
-func (jumps Akas) PrintFullWalk(e *list.Element) {
+func (jumps Akas) PrintFullWalk(e Here) {
 	fmt.Print("From: ")
 	from, d := jumps.From(e)
 	e.PrintValue()
@@ -98,15 +96,15 @@ func (jumps Akas) PrintFullWalk(e *list.Element) {
 	fmt.Printf("\tDistance: %v\n", d)
 }
 
-func (steps Kata) PrintWalker(name string, from *list.Element) {
+func (steps Kata) PrintWalker(name string, from Here) {
 	steps.Walker(from).Print(name, from)
 }
 
-func (jumps Akas) PrintWalker(name string, from *list.Element) {
+func (jumps Akas) PrintWalker(name string, from Here) {
 	jumps.Walker(from).Print(name, from)
 }
 
-func (next Walk) Print(name string, from *list.Element) {
+func (next Walk) Print(name string, from Here) {
 	from.PrintValue(name + "\t=>")
 	for x := next(); x != nil; x = next() {
 		x.PrintValue(" ->")

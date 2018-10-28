@@ -4,20 +4,16 @@
 
 package walk
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
 // Akas (Burmese) is a slice of forms of movement (in martial arts, and dances :-) )
 type Akas []Kata // Burmese
 
 // ========================================================
 
-// From returns the non-nil Elements reached from e by jumps
-func (jumps Akas) From(e *list.Element) ([]*list.Element, Distance) {
+// From returns the non-nil Heres reached from e by jumps
+func (jumps Akas) From(e Here) ([]Here, Distance) {
 	var dist, dnow Distance
 	var goal = e
-	goals := make([]*list.Element, 0, len(jumps))
+	goals := make([]Here, 0, len(jumps))
 	for _, steps := range jumps {
 		goal, dnow = steps.From(e)
 		if goal == nil {
@@ -31,12 +27,12 @@ func (jumps Akas) From(e *list.Element) ([]*list.Element, Distance) {
 
 // ========================================================
 
-// Grab returns all Elements reached from e by jumps
+// Grab returns all Heres reached from e by jumps
 // Note: Grab may be useful in debugging, as it returns a full trace
 // To Grab is not intended for regular use - Don't be greedy :-)
-func (jumps Akas) Grab(e *list.Element) ([]*list.Element, Distance) {
+func (jumps Akas) Grab(e Here) ([]Here, Distance) {
 	var dist Distance
-	goals := make([]*list.Element, 0, len(jumps)*len(jumps))
+	goals := make([]Here, 0, len(jumps)*len(jumps))
 	for _, steps := range jumps {
 		goal, dnow := steps.Grab(e)
 		if goal == nil || len(goal) == 0 {
@@ -50,12 +46,12 @@ func (jumps Akas) Grab(e *list.Element) ([]*list.Element, Distance) {
 
 // ========================================================
 
-// Haul returns the Elements (or nil) From e by hauling jumps
+// Haul returns the Heres (or nil) From e by hauling jumps
 // Note: From any new goal, just the current Kata is repeated!
 // Not all jumps are done again - this would imply loops.
-func (jumps Akas) Haul(e *list.Element) ([]*list.Element, Distance) {
+func (jumps Akas) Haul(e Here) ([]Here, Distance) {
 	var dist Distance
-	goals := make([]*list.Element, 0, len(jumps)*len(jumps)*8)
+	goals := make([]Here, 0, len(jumps)*len(jumps)*8)
 	for _, steps := range jumps {
 		goal, dnow := steps.Haul(e)
 		if goal == nil || len(goal) == 0 {
@@ -71,7 +67,7 @@ func (jumps Akas) Haul(e *list.Element) ([]*list.Element, Distance) {
 // Iterator
 
 // Walker returns an iterator walking all Kata.From(e) ...
-func (jumps Akas) Walker(e *list.Element) Walk {
+func (jumps Akas) Walker(e Here) Walk {
 
 	var curr = e
 	var akas = jumps
@@ -79,7 +75,7 @@ func (jumps Akas) Walker(e *list.Element) Walk {
 	var aidx int // index of akas
 	var next = akas[aidx].Walker(curr)
 
-	var move Walk = func() *list.Element {
+	var move Walk = func() Here {
 	next:
 		goal := next()
 		if goal == nil && aidx < maxi {

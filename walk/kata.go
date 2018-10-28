@@ -4,17 +4,13 @@
 
 package walk
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
 // Kata (Japanese) is a form of movement (in martial arts)
 type Kata []GoTo // Japanese
 
 // ========================================================
 
-// From returns the Element (or nil) reached from e by steps
-func (steps Kata) From(e *list.Element) (*list.Element, Distance) {
+// From returns the Here (or nil) reached from e by steps
+func (steps Kata) From(e Here) (Here, Distance) {
 	var dist, dnow Distance
 	var goal = e
 
@@ -30,15 +26,15 @@ func (steps Kata) From(e *list.Element) (*list.Element, Distance) {
 
 // ========================================================
 
-// Grab returns all Elements reached from e by steps
+// Grab returns all Heres reached from e by steps
 // until nil or same is found
 // Note: Grab may be useful in debugging, as it returns a full trace
 // To Grab is not intended for regular use - Don't be greedy :-)
-func (steps Kata) Grab(e *list.Element) ([]*list.Element, Distance) {
+func (steps Kata) Grab(e Here) ([]Here, Distance) {
 	var dist, dnow Distance
 	var goal = e
 	last := goal
-	goals := make([]*list.Element, 0, len(steps))
+	goals := make([]Here, 0, len(steps))
 	for _, step := range steps {
 		last = goal
 		goal, dnow = step.from(goal)
@@ -53,13 +49,13 @@ func (steps Kata) Grab(e *list.Element) ([]*list.Element, Distance) {
 
 // ========================================================
 
-// Haul returns the Elements (or nil) From e by repeating steps
+// Haul returns the Heres (or nil) From e by repeating steps
 // until nil or seen is found
-func (steps Kata) Haul(e *list.Element) ([]*list.Element, Distance) {
-	var seen = make(map[*list.Element]bool)
+func (steps Kata) Haul(e Here) ([]Here, Distance) {
+	var seen = make(map[Here]bool)
 	var dist, dnow Distance
 	var goal = e
-	goals := make([]*list.Element, 0, len(steps)*8)
+	goals := make([]Here, 0, len(steps)*8)
 	for {
 		goal, dnow = steps.From(goal)
 		if goal == nil || seen[goal] {
@@ -75,12 +71,12 @@ func (steps Kata) Haul(e *list.Element) ([]*list.Element, Distance) {
 // Iterator
 
 // Walker returns an iterator repeating Kata.From(e) ...
-func (steps Kata) Walker(e *list.Element) Walk {
-	var seen = make(map[*list.Element]bool)
+func (steps Kata) Walker(e Here) Walk {
+	var seen = make(map[Here]bool)
 	var curr = e
 	var kata = steps
 
-	var move Walk = func() *list.Element {
+	var move Walk = func() Here {
 		seen[curr] = true
 		if curr == nil {
 			return nil
