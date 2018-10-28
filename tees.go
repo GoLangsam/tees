@@ -44,11 +44,16 @@ type Iterator interface {
 	ForEachNext(f func(*list.Element))
 }
 
+// trailer represents a finite iterator with known lenght
+type trailer interface {
+	Iterator
+	Len() int
+}
+
 // Xrosser supports constructions such as Xross
 type Xrosser interface {
-	Iterator
+	trailer
 	CVs() *list.ComposedValue
-	Len() int
 }
 
 // Calcer supports calculations such as Append and Times
@@ -64,9 +69,8 @@ type Line interface {
 	Root() *list.Element
 }
 
-// A Border is directly next to any Edge
+// A Border may be an Edge
 type Border interface {
 	Away() *list.Element
 	IsRoot() bool
 }
-
