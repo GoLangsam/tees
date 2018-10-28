@@ -15,7 +15,7 @@ package tees
 // Sigma returns the sum of the results of applying a given function f to each element of list l
 func Sigma(
 	f func(This) int,
-	l CanIter,
+	l Iterator,
 ) int {
 	if l == nil {
 		return 0
@@ -35,7 +35,7 @@ func Sigma(
 //	FoldInt(func(e This, r int) int {return r + f(e)}, l, 0)
 func SigmaInt(
 	f func(This) int,
-	l CanIter,
+	l Iterator,
 ) int {
 	return FoldInt(func(e This, r int) int { return r + f(e) }, l, 0)
 }

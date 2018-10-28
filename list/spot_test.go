@@ -2,11 +2,14 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package tees
+package list_test
 
 import (
 	"github.com/GoLangsam/tees/list"
 )
+
+var _ Spot = list.New()
+var _ Spot = list.New().Root()
 
 // Spot abstracts the common behaviour of *list.Element & *list.List
 type Spot interface {

@@ -12,7 +12,7 @@ package tees
 // FoldAny folds a list (from front to next) using f and initial
 func FoldAny(
 	f func(This, interface{}) interface{},
-	l CanIter,
+	l Iterator,
 	initial interface{}) interface{} {
 	if l == nil {
 		return initial
@@ -28,7 +28,7 @@ func FoldAny(
 // FoldInt folds a list (from front to next) using f(*Element, int) and initial
 func FoldInt(
 	f func(This, int) int,
-	l CanIter,
+	l Iterator,
 	initial int) int {
 	if l == nil {
 		return initial
@@ -44,7 +44,7 @@ func FoldInt(
 // FoldString folds a list (from front to next) using f(*Element, string) and initial
 func FoldString(
 	f func(This, string) string,
-	l CanIter,
+	l Iterator,
 	initial string) string {
 	if l == nil {
 		return initial
