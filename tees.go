@@ -57,3 +57,16 @@ type Calcer interface {
 	CVs() *list.ComposedValue
 	With(*list.List) *list.ComposedValue
 }
+
+// A Line may be parallel to another Line
+type Line interface {
+	List() *list.List
+	Root() *list.Element
+}
+
+// A Border is directly next to any Edge
+type Border interface {
+	Away() *list.Element
+	IsRoot() bool
+}
+
