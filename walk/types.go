@@ -5,11 +5,11 @@
 package walk
 
 import (
-	"github.com/GoLangsam/tees/list"
+	"github.com/GoLangsam/tees"
 )
 
 // Here is where You are - and wherever You walk to.
-type Here = *list.Element
+type Here = tees.This
 
 // Trail is a series of `Here` marks.
-type Trail = []*list.Element
+type Trail = []tees.This
