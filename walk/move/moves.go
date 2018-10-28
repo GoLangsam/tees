@@ -5,7 +5,7 @@
 package move
 
 import (
-	"github.com/GoLangsam/tees/list/walk"
+	"github.com/GoLangsam/tees/walk"
 )
 
 // For Your convenience: Some predefined Moves:

@@ -6,14 +6,11 @@
 package walk_test
 
 import (
-	"github.com/GoLangsam/tees/list"
-
-	"github.com/GoLangsam/tees/list/math"
-
-	"github.com/GoLangsam/tees/list/walk"
-	"github.com/GoLangsam/tees/list/walk/move"
-
 	"fmt"
+
+	"github.com/GoLangsam/tees"
+	"github.com/GoLangsam/tees/walk"
+	"github.com/GoLangsam/tees/walk/move"
 )
 
 var testakass = []struct {
@@ -29,14 +26,14 @@ var testakass = []struct {
 // func main() {
 func ExampleAkas_PrintWalker() {
 	// Create a new list
-	var chess = list.NewList("Chess")
+	var chess = tees.New("Chess")
 
 	// Create new lists
 	var cols = chess.AddBeam("Spalten", "A", "B", "C", "D", "E")
 	var rows = chess.AddBeam("Zeilen", 1, 2, 3, 4, 5)
 	fmt.Println("Starting")
 
-	var board = math.Xross(cols, rows)
+	var board = tees.Xross(cols, rows)
 	board.PrintAways("Schach")
 	board.Root().Away().List().PrintAways("Brett")
 	var s = board.Front().Away().List().Front()         // A|1
