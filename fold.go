@@ -4,10 +4,6 @@
 
 package tees
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
 // ===========================================================================
 
 // foldr _ z [] = z
@@ -15,7 +11,7 @@ import (
 
 // FoldAny folds a list (from front to next) using f and initial
 func FoldAny(
-	f func(*list.Element, interface{}) interface{},
+	f func(This, interface{}) interface{},
 	l CanIter,
 	initial interface{}) interface{} {
 	if l == nil {
@@ -31,7 +27,7 @@ func FoldAny(
 
 // FoldInt folds a list (from front to next) using f(*Element, int) and initial
 func FoldInt(
-	f func(*list.Element, int) int,
+	f func(This, int) int,
 	l CanIter,
 	initial int) int {
 	if l == nil {
@@ -47,7 +43,7 @@ func FoldInt(
 
 // FoldString folds a list (from front to next) using f(*Element, string) and initial
 func FoldString(
-	f func(*list.Element, string) string,
+	f func(This, string) string,
 	l CanIter,
 	initial string) string {
 	if l == nil {

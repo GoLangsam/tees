@@ -47,8 +47,23 @@ type AwayDust interface {
 type Beam interface {
 	CanIter // Front Next
 	CanReti // Back  Prev
-	HasLen  // Len
-	HasRoot // Root
+	Len() int
+	Root() *list.Element
+}
+
+// CanIter allows to iterate forward by starting with Front() and, if non-nil, repeating Next() until Next() returns nil
+type CanIter interface {
+	Front() *list.Element
+	Next() *list.Element
+	ForEachNext(f func(*list.Element))
+}
+
+// CanReti allows to iterate backward by starting with Back() and, if non-nil, repeating Prev() until Prev() returns nil
+//  Note: Reti is Iter spelled backwards.
+type CanReti interface {
+	Back() *list.Element
+	Prev() *list.Element
+	ForEachPrev(f func(*list.Element))
 }
 
 // Dust abstracts the 'pointy' behaviour common to *list.Element & *list.List

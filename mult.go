@@ -4,23 +4,13 @@
 
 package tees
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
-type Calcer interface {
-	CanIter
-	CVs() *list.ComposedValue
-	With(*list.List) *list.ComposedValue
-}
-
 // Times returns a new list: the cross product of l with some lists...
 // ( recursively as [[[ l * l ] * l ] ... ] )
 // Note: Times( l, nil ) returns a new empty list
 // the root of which carries the CVs of the original l.Root()
 // and the elements carry the CVs of the original elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func Times(l Calcer, lists ...*list.List) *list.List {
+func Times(l Calcer, lists ...Tees) Tees {
 	n := len(lists)
 	switch {
 	case n == 0:
@@ -38,7 +28,7 @@ func Times(l Calcer, lists ...*list.List) *list.List {
 // representing the cross-product of the list X * Y
 // Note: l.times( nil ) returns a new list with no elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func times(X Calcer, Y *list.List) *list.List {
+func times(X Calcer, Y Tees) Tees {
 	if X == nil {
 		return New(nil)
 	}

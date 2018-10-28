@@ -4,18 +4,14 @@
 
 package tees
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
 // ===========================================================================
 
 // Zipp returns an iterator function returning successive pairs.
-func Zipp(X, Y CanIter) func() (*list.Element, *list.Element) {
+func Zipp(X, Y CanIter) func() (This, This) {
 	var x = X.Front()
 	var y = Y.Front()
 
-	return func() (*list.Element, *list.Element) {
+	return func() (This, This) {
 		var currx = x
 		var curry = y
 		if x != nil {

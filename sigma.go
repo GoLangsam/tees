@@ -4,10 +4,6 @@
 
 package tees
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
 // ===========================================================================
 
 //  let rec sigma f = function
@@ -18,7 +14,7 @@ import (
 
 // Sigma returns the sum of the results of applying a given function f to each element of list l
 func Sigma(
-	f func(*list.Element) int,
+	f func(This) int,
 	l CanIter,
 ) int {
 	if l == nil {
@@ -33,13 +29,13 @@ func Sigma(
 }
 
 // Note: Sigma may also be expressed using
-//	FoldInt(func(e *list.Element, r int) int {return r + f(e)}, l, 0)
+//	FoldInt(func(e This, r int) int {return r + f(e)}, l, 0)
 
 // SigmaInt returns the sum of the results of applying a given function f to each element of list l using
-//	FoldInt(func(e *list.Element, r int) int {return r + f(e)}, l, 0)
+//	FoldInt(func(e This, r int) int {return r + f(e)}, l, 0)
 func SigmaInt(
-	f func(*list.Element) int,
+	f func(This) int,
 	l CanIter,
 ) int {
-	return FoldInt(func(e *list.Element, r int) int { return r + f(e) }, l, 0)
+	return FoldInt(func(e This, r int) int { return r + f(e) }, l, 0)
 }

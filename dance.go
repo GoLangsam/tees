@@ -4,28 +4,16 @@
 
 package tees
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
-// ========================================================
-// A Dancer loves dancing his Dance.
-type Dancer interface {
-	Away() *list.Element
-	ForEachNext(f func(*list.Element))
-	ForEachPrev(f func(*list.Element))
-}
-
 // ========================================================
 
 // Dance e is where the dancing begins.
-func Dance(e Dancer, d *list.Dancing) {
+func Dance(e Dancer, d Dancing) {
 	unC(e)		//   fold Col
-	ForEachNext(e, func(i *list.Element) {
+	forEachNext(e, func(i This) {
 		d.OnGoal(i)	// Publish candidate
 		unR(i.Away())	//   fold Row
 		d.Dance()	// Dance d is where the dancing recurs to
-		reR(i.Away())	//   open Roe
+		reR(i.Away())	//   open Row
 		d.OnFail()	// Plopp :-(
 	})
 	reC(e)		//   open Col
@@ -35,16 +23,16 @@ func Dance(e Dancer, d *list.Dancing) {
 func unC(c Dancer) { c.Away().UnLink(); unL(c) }
 func reC(c Dancer) { c.Away().ReLink(); reL(c) }
 
-func unR(r Dancer) { ForEachNext(r, func(i *list.Element) { unC(i.Away().List()) }) }
-func reR(r Dancer) { ForEachPrev(r, func(i *list.Element) { reC(i.Away().List()) }) }
+func unR(r Dancer) { forEachNext(r, func(i This) { unC(i.Away().List()) }) }
+func reR(r Dancer) { forEachPrev(r, func(i This) { reC(i.Away().List()) }) }
 
-func unL(l Dancer) { ForEachNext(l, func(i *list.Element) { unE(i.Away()) }) }
-func reL(l Dancer) { ForEachPrev(l, func(i *list.Element) { reE(i.Away()) }) }
+func unL(l Dancer) { forEachNext(l, func(i This) { unE(i.Away()) }) }
+func reL(l Dancer) { forEachPrev(l, func(i This) { reE(i.Away()) }) }
 
-func unE(e Dancer) { ForEachNext(e, func(i *list.Element) { i.Away().UnLink() }) }
-func reE(e Dancer) { ForEachPrev(e, func(i *list.Element) { i.Away().ReLink() }) }
+func unE(e Dancer) { forEachNext(e, func(i This) { i.Away().UnLink() }) }
+func reE(e Dancer) { forEachPrev(e, func(i This) { i.Away().ReLink() }) }
 
 // ========================================================
 
-func ForEachNext(s Dancer, f func(*list.Element)) { s.ForEachNext(f) }
-func ForEachPrev(s Dancer, f func(*list.Element)) { s.ForEachPrev(f) }
+func forEachNext(s Dancer, f func(This)) { s.ForEachNext(f) }
+func forEachPrev(s Dancer, f func(This)) { s.ForEachPrev(f) }

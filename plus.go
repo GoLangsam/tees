@@ -4,17 +4,13 @@
 
 package tees
 
-import (
-	"github.com/GoLangsam/tees/list"
-)
-
 // Append returns a new list: the union of l with some lists...
 // ( recursively as [[[ l + l ] + l ] ... ] )
 // Note: Append( l, nil ) returns a new copy of l with composedValues
 // the root of which carries the CVs of the original l.Root()
 // and the elements carry the CVs of the original elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func Append(l Calcer, lists ...*list.List) *list.List {
+func Append(l Calcer, lists ...Tees) Tees {
 	n := len(lists)
 	switch {
 	case n == 0:
@@ -32,7 +28,7 @@ func Append(l Calcer, lists ...*list.List) *list.List {
 // representing the union of the list X plus Y
 // Note: plus(X, nil ) returns a new copy of X with composedValues
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
-func plus(X Calcer, Y *list.List) *list.List {
+func plus(X Calcer, Y Tees) Tees {
 	if X == nil {
 		return New(nil)
 	}
