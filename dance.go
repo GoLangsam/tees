@@ -8,15 +8,15 @@ package tees
 
 // Dance e is where the dancing begins.
 func Dance(e Dancer, d Dancing) {
-	unC(e)		//   fold Col
+	unC(e) //   fold Col
 	forEachNext(e, func(i This) {
-		d.OnGoal(i)	// Publish candidate
-		unR(i.Away())	//   fold Row
-		d.Dance()	// Dance d is where the dancing recurs to
-		reR(i.Away())	//   open Row
-		d.OnFail()	// Plopp :-(
+		d.OnGoal(i)   // Publish candidate
+		unR(i.Away()) //   fold Row
+		d.Dance()     // Dance d is where the dancing recurs to
+		reR(i.Away()) //   open Row
+		d.OnFail()    // Plopp :-(
 	})
-	reC(e)		//   open Col
+	reC(e) //   open Col
 }
 
 // ========================================================

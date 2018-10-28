@@ -21,8 +21,9 @@ func IsEdge(x Border) bool {
 // AreParallel reports if two lines are parallel with each other.
 //	Note: nil is NOT considered parallel to nil
 func AreParallel(x, y Line) bool {
-	if x == nil { return false }
-	if y == nil { return false }
+	if x == nil || y == nil {
+		return false
+	}
 
 	return (x.List() == y.List() || x.Root().AwayList() == y.Root().AwayList())
 }
