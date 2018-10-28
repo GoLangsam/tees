@@ -11,7 +11,6 @@ import (
 // ========================================================
 type Dancer interface {
 	Away() *list.Element
-	AwayList() *list.List
 	ForEachNext(f func(*list.Element))
 	ForEachPrev(f func(*list.Element))
 	Root() *list.Element
@@ -52,8 +51,8 @@ func reE(e Dancer) { ForEachPrev(e, reKf) }
 
 // ========================================================
 
-var unAf = func(i *list.Element) { unC(i.AwayList()) }
-var reAf = func(i *list.Element) { reC(i.AwayList()) }
+var unAf = func(i *list.Element) { unC(i.Away().List()) }
+var reAf = func(i *list.Element) { reC(i.Away().List()) }
 
 var unEf = func(i *list.Element) { unE(i.Away()) }
 var reEf = func(i *list.Element) { reE(i.Away()) }
