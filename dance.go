@@ -21,12 +21,6 @@ type Dancer interface {
 // Dance e is where the dancing begins.
 func Dance(e Dancer, d *list.Dancing) {
 	unC(e)		//   fold Col
-	dance(e, d)	// dance dance dance
-	reC(e)		//   open Col
-}
-
-// dance e is where the dancing continues
-func dance(e Dancer, d *list.Dancing) {
 	ForEachNext(e, func(i *list.Element) {
 		d.OnGoal(i)	// Publish candidate
 		unR(i.Away())	//   fold Row
@@ -34,6 +28,7 @@ func dance(e Dancer, d *list.Dancing) {
 		reR(i.Away())	//   open Roe
 		d.OnFail()	// Plopp :-(
 	})
+	reC(e)		//   open Col
 }
 
 // ========================================================
