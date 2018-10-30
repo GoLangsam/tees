@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 
 package move_test
+
 // package main
 
 import (
@@ -13,74 +14,75 @@ import (
 )
 
 func ExampleGotoNext() {
-//func main() {
+	//func main() {
 	// Create a new list
-	var chess = tees.New( "Chess" )
+	var chess = tees.New("Chess")
 
 	// Create new lists
-	var cols = chess.AddBeam( "Spalten", "A", "B", "C", "D", "E" )
-	var rows = chess.AddBeam( "Zeilen", 1, 2, 3, 4, 5 )
+	var cols = chess.AddBeam("Spalten", "A", "B", "C", "D", "E")
+	var rows = chess.AddBeam("Zeilen", 1, 2, 3, 4, 5)
 	fmt.Println("Starting")
 
-	var board = tees.Xross( cols, rows )
-	board.PrintAways( "Schach" )
-	board.Root().Away().List().PrintAways( "Brett" )
+	var board = tees.Xross(cols, rows)
+	board.PrintAways("Schach")
+	board.Root().Away().List().PrintAways("Brett")
 
 	if false {
-	board.PrintAtomValues( "board \t")
-	board.Root().Away().List().PrintAtomValues( "board.Root().Away().List().Root().Away() \t")
-	board.Front().PrintAtomValues("board.Front() \t")
-	board.Front().Away().PrintAtomValues("board.Front().Away() \t")
-	board.Front().Away().List().PrintAtomValues("board.Front().Away().List() \t")
-	board.Front().Away().Next().PrintAtomValues("board.Front().Away().Next() \t")
-	board.Front().Away().List().Front().PrintAtomValues("board.Front().Away().List().Front() \t")
-	board.Front().Away().List().Front().Away().PrintAtomValues("board.Front().Away().List().Front().Away() \t")
+		board.PrintAtomValues("board \t")
+		board.Root().Away().List().PrintAtomValues("board.Root().Away().List().Root().Away() \t")
+		board.Front().PrintAtomValues("board.Front() \t")
+		board.Front().Away().PrintAtomValues("board.Front().Away() \t")
+		board.Front().Away().List().PrintAtomValues("board.Front().Away().List() \t")
+		board.Front().Away().Next().PrintAtomValues("board.Front().Away().Next() \t")
+		board.Front().Away().List().Front().PrintAtomValues("board.Front().Away().List().Front() \t")
+		board.Front().Away().List().Front().Away().PrintAtomValues("board.Front().Away().List().Front().Away() \t")
 	}
 
-	var s = board.Front().Away().List().Front()		// A|1
-	var m = s.Next().Next().Away().Next().Next().Away()	// C|3
-	var e = board.Back().Away().List().Back()		// E|5
-	if s.IsRoot() || m.IsRoot() || e.IsRoot() {}
+	var s = board.Front().Away().List().Front()         // A|1
+	var m = s.Next().Next().Away().Next().Next().Away() // C|3
+	var e = board.Back().Away().List().Back()           // E|5
+	if s.IsRoot() || m.IsRoot() || e.IsRoot() {
+	}
 
-	fmt.Println( "\nJumpNext" )
-//	move.GotoNext.PrintFullWalk( s )
-	move.GotoNext.PrintFullWalk( m )
-//	move.GotoNext.PrintFullWalk( e )
+	fmt.Println("\nJumpNext")
+	//	move.GotoNext.PrintFullWalk( s )
+	move.GotoNext.PrintFullWalk(m)
+	//	move.GotoNext.PrintFullWalk( e )
 
-	fmt.Println( "\nJumpDown" )
-//	move.MoveDown.PrintFullWalk( s )
-	move.MoveDown.PrintFullWalk( m )
-//	move.MoveDown.PrintFullWalk( e )
+	fmt.Println("\nJumpDown")
+	//	move.MoveDown.PrintFullWalk( s )
+	move.MoveDown.PrintFullWalk(m)
+	//	move.MoveDown.PrintFullWalk( e )
 
-	fmt.Println( "\nJumpRightDown" )
-//	move.DiagRightDown.PrintFullWalk( s )
-	move.DiagRightDown.PrintFullWalk( m )
-//	move.DiagRightDown.PrintFullWalk( e )
+	fmt.Println("\nJumpRightDown")
+	//	move.DiagRightDown.PrintFullWalk( s )
+	move.DiagRightDown.PrintFullWalk(m)
+	//	move.DiagRightDown.PrintFullWalk( e )
 
-	fmt.Println( "\nChessRook" )
-//	move.ChessRook.PrintFullWalk( s )
-	move.ChessRook.PrintFullWalk( m )
-//	move.ChessRook.PrintFullWalk( e )
+	fmt.Println("\nChessRook")
+	//	move.ChessRook.PrintFullWalk( s )
+	move.ChessRook.PrintFullWalk(m)
+	//	move.ChessRook.PrintFullWalk( e )
 
-	fmt.Println( "\nChessBishop" )
-//	move.ChessBishop.PrintFullWalk( s )
-	move.ChessBishop.PrintFullWalk( m )
-//	move.ChessBishop.PrintFullWalk( e )
+	fmt.Println("\nChessBishop")
+	//	move.ChessBishop.PrintFullWalk( s )
+	move.ChessBishop.PrintFullWalk(m)
+	//	move.ChessBishop.PrintFullWalk( e )
 
-	fmt.Println( "\nChessKnight" )
-//	move.ChessKnight.PrintFullWalk( s )
-	move.ChessBishop.PrintFullWalk( m )
-//	move.ChessKnight.PrintFullWalk( e )
+	fmt.Println("\nChessKnight")
+	//	move.ChessKnight.PrintFullWalk( s )
+	move.ChessBishop.PrintFullWalk(m)
+	//	move.ChessKnight.PrintFullWalk( e )
 
-	fmt.Println( "\nChessKing" )
-//	move.ChessKing.PrintFullWalk( s )
-	move.ChessKing.PrintFullWalk( m )
-//	move.ChessKing.PrintFullWalk( e )
+	fmt.Println("\nChessKing")
+	//	move.ChessKing.PrintFullWalk( s )
+	move.ChessKing.PrintFullWalk(m)
+	//	move.ChessKing.PrintFullWalk( e )
 
-	fmt.Println( "\nChessQueen" )
-//	move.ChessQueen.PrintFullWalk( s )
-	move.ChessQueen.PrintFullWalk( m )
-//	move.ChessQueen.PrintFullWalk( e )
+	fmt.Println("\nChessQueen")
+	//	move.ChessQueen.PrintFullWalk( s )
+	move.ChessQueen.PrintFullWalk(m)
+	//	move.ChessQueen.PrintFullWalk( e )
 
 	// Output:
 	// Starting
