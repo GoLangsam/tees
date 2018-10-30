@@ -9,9 +9,9 @@ import (
 )
 
 type Dancing struct {
-	Dance   	func(*tees.Tees)
+	Dance func(*tees.Tees)
 
-	OnGoal		func(*tees.Tees) 		bool
-	OnFail	   	func(*tees.Tees) (*tees.Tees,	bool)
-	OnLeaf		func(*tees.Tees) 		bool
+	OnGoal func(*tees.Tees) bool
+	OnFail func(*tees.Tees) (*tees.Tees, bool)
+	OnLeaf func(*tees.Tees) bool
 }
