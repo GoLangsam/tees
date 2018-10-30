@@ -8,26 +8,22 @@ chooser.go defines some Choose-functions to choose sth for a dancer to dance on
 */
 package chooser
 
-import (
-	"github.com/GoLangsam/tees"
-)
-
 // ========================================================
 
 // ChooseNil returns nil & false - useful for abort
-func ChooseNil(l *tees.Tees) (*tees.Tees, bool) {
+func ChooseNil(among *Tees) (*Tees, bool) {
 	return nil, false
 }
 
 // ========================================================
 
 // ChooseFront simply returns the first column
-func ChooseFront(l *tees.Tees) (*tees.Tees, bool) {
+func ChooseFront(among *Tees) (*Tees, bool) {
 
-	if l == nil { panic( "List to choose from is nil!") }
-	if Verbose {	l.PrintAways("Choosing from: ")	}
+	if among == nil { panic( "Cannot choose from is nil!") }
+	if Verbose {	among.PrintAways("Choosing from: ")	}
 
-	e := l.Front()
+	e := among.Front()
 	if e == nil { return nil, false }
 	e = e.Away()
 	if e == nil { return nil, false }
@@ -43,11 +39,11 @@ func ChooseFront(l *tees.Tees) (*tees.Tees, bool) {
 // ChooseShort returns the shortest column
 //	- it's the preferred method of choice
 //	- it returns false on zero-lenght as there is no point in trying such
-func ChooseShort(l *tees.Tees) (*tees.Tees, bool) {
+func ChooseShort(among *Tees) (*Tees, bool) {
 	var found bool = false
-	var c *tees.Tees
+	var c *Tees
 	s := 999999999
-	for j := l.Front(); j != nil; j = j.Next() {
+	for j := among.Front(); j != nil; j = j.Next() {
 		list := j.AwayList()
 		if list != nil {
 			leng := list.Len()
@@ -70,33 +66,33 @@ func ChooseShort(l *tees.Tees) (*tees.Tees, bool) {
 // ========================================================
 
 // ChooseUpto0 returns the first column not longer than 0
-func ChooseUpto0(list *tees.Tees) (*tees.Tees, bool) {
-	return ChooseUpto(list, 0)
+func ChooseUpto0(among *Tees) (*Tees, bool) {
+	return ChooseUpto(among, 0)
 }
 
 // ChooseUpto1 returns the first column not longer than 1
-func ChooseUpto1(list *tees.Tees) (*tees.Tees, bool) {
-	return ChooseUpto(list, 1)
+func ChooseUpto1(among *Tees) (*Tees, bool) {
+	return ChooseUpto(among, 1)
 }
 
 // ChooseUpto1 returns the first column not longer than 2
-func ChooseUpto2(list *tees.Tees) (*tees.Tees, bool) {
-	return ChooseUpto(list, 2)
+func ChooseUpto2(among *Tees) (*Tees, bool) {
+	return ChooseUpto(among, 2)
 }
 
 // ChooseUpto1 returns the first column not longer than 3
-func ChooseUpto3(list *tees.Tees) (*tees.Tees, bool) {
-	return ChooseUpto(list, 3)
+func ChooseUpto3(among *Tees) (*Tees, bool) {
+	return ChooseUpto(among, 3)
 }
 
 // ========================================================
 
 // ChooseBelow returns the first column not longer than min
-func ChooseUpto(l *tees.Tees, min int) (*tees.Tees, bool) {
+func ChooseUpto(among *Tees, min int) (*Tees, bool) {
 	var found bool = false
-	var c *tees.Tees
+	var c *Tees
 	s := 999999999
-	for j := l.Front(); j != nil; j = j.Next() {
+	for j := among.Front(); j != nil; j = j.Next() {
 		list := j.AwayList()
 		if list != nil {
 			leng := list.Len()

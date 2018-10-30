@@ -14,5 +14,8 @@ import (
 
 // ========================================================
 
+// Tees are chosen from
+type Tees = tees.Tees
+
 // Chooser is the signature of a choosing function
 type Chooser func(*tees.Tees) (*tees.Tees, bool)
