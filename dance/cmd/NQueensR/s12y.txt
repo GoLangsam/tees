@@ -1,0 +1,3 @@
+
+Queens on a 12 * 12 Board
+Time = 646.2352ms

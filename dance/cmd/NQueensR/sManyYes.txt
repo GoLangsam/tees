@@ -1,0 +1,30 @@
+
+Queens on a 10 * 10 Board
+Time = 30.0017ms
+
+Queens on a 11 * 11 Board
+Time = 125.0072ms
+
+Queens on a 12 * 12 Board
+Time = 514.0294ms
+
+Queens on a 13 * 13 Board
+Time = 2.1281218s
+
+Queens on a 14 * 14 Board
+Time = 11.3156472s
+
+Queens on a 15 * 15 Board
+Time = 1m4.1356684s
+
+Queens on a 16 * 16 Board
+Time = 6m19.2206902s
+
+Queens on a 17 * 17 Board
+Time = 39m53.0018719s
+
+Queens on a 18 * 18 Board
+
+Queens on a 19 * 19 Board
+
+Queens on a 20 * 20 Board
