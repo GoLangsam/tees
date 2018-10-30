@@ -10,7 +10,7 @@ type Dancing struct {
 
 	OnGoal func(e *Element)
 	OnFail func() *Element
-	OnLeaf func(e *Element)
+	OnLeaf func()
 }
 
 // NewDancing returns a new dancing.
@@ -20,11 +20,11 @@ func NewDancing() *Dancing { // cannot pass CallBack upon New, as it is a method
 
 func (d *Dancing) init() *Dancing {
 
-	d.Dance = func() { return }
+	d.Dance		= func()		{return}
 
-	d.OnGoal = func(e *Element) { return }
-	d.OnFail = func() *Element { return nil }
-	d.OnLeaf = func(e *Element) { return }
+	d.OnGoal	= func(e *Element)	{return}
+	d.OnFail	= func() *Element	{return nil}
+	d.OnLeaf	= func()		{return}
 
 	return d
 }

@@ -31,7 +31,9 @@ func (l *List) UnLeaf(d *Dancing) {
 		e.next.prev = e.prev
 		e.prev.next = e.next
 		e.list.len--
-		d.OnLeaf(e)
+		if d.OnLeaf != nil {
+			d.OnLeaf()
+		}
 	}
 }
 
@@ -48,7 +50,9 @@ func (l *List) ReLeaf(d *Dancing) {
 func (e *Element) UnLeaf(d *Dancing) {
 	e.next.prev, e.prev.next = e.prev, e.next
 	e.list.len--
-	d.OnLeaf(e)
+	if d.OnLeaf != nil {
+		d.OnLeaf()
+	}
 }
 
 // ReLeaf restores the temporarily Unleaf'ed/removed one.
