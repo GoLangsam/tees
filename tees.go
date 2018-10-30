@@ -11,7 +11,7 @@ import (
 // ========================================================
 
 // New returns a new collection of Tees.
-func New(v interface{}, vals ...interface{}) Tees {
+func New(v interface{}, vals ...interface{}) *Tees {
 	return list.NewList(v, vals...)
 }
 
@@ -21,7 +21,10 @@ func New(v interface{}, vals ...interface{}) Tees {
 type aTee = list.Element
 
 // Tees is a collection of aTee's.
-type Tees = *list.List
+type Tees = list.List
+
+// This is inside our Tees-Monad
+type This = aTee
 
 // ========================================================
 

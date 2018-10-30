@@ -6,7 +6,7 @@ package tees
 
 // validate interfaces
 
-var t Tees = New("test", 1)
+var t *Tees = New("test", 1)
 var e *aTee = t.Front()
 var _ = new(aTee)
 

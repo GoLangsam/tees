@@ -12,4 +12,4 @@ import (
 type Here = tees.This
 
 // Trail is a series of `Here` marks.
-type Trail = []tees.This
+type Trail = []*Here

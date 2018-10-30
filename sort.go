@@ -10,7 +10,7 @@ import (
 
 // Arrange sorts t in place according to weight.
 // The sort is stable.
-func Arrange(t Tees, weight func(*aTee) int) Tees {
+func Arrange(t *Tees, weight func(*aTee) int) *Tees {
 	if t.Len() < 1 {
 		return t
 	}
@@ -22,7 +22,7 @@ func Arrange(t Tees, weight func(*aTee) int) Tees {
 
 // Stable sorts these in place according to less.
 // The sort is stable.
-func Stable(these []*aTee, less func(i, j int) bool) Tees {
+func Stable(these []*aTee, less func(i, j int) bool) *Tees {
 	if len(these) < 1 {
 		return nil
 	}

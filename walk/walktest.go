@@ -18,7 +18,7 @@ type KataAkas interface {
 	Walker(Here) Walk
 }
 
-func (steps Kata) PrintFullWalk(e Here) {
+func (steps Kata) PrintFullWalk(e *Here) {
 	fmt.Print("From: ")
 	from, d := steps.From(e)
 	e.PrintValue()
@@ -55,7 +55,7 @@ func (steps Kata) PrintFullWalk(e Here) {
 	fmt.Printf("\tDistance: %v\n", d)
 }
 
-func (jumps Akas) PrintFullWalk(e Here) {
+func (jumps Akas) PrintFullWalk(e *Here) {
 	fmt.Print("From: ")
 	from, d := jumps.From(e)
 	e.PrintValue()
@@ -96,15 +96,15 @@ func (jumps Akas) PrintFullWalk(e Here) {
 	fmt.Printf("\tDistance: %v\n", d)
 }
 
-func (steps Kata) PrintWalker(name string, from Here) {
+func (steps Kata) PrintWalker(name string, from *Here) {
 	steps.Walker(from).Print(name, from)
 }
 
-func (jumps Akas) PrintWalker(name string, from Here) {
+func (jumps Akas) PrintWalker(name string, from *Here) {
 	jumps.Walker(from).Print(name, from)
 }
 
-func (next Walk) Print(name string, from Here) {
+func (next Walk) Print(name string, from *Here) {
 	from.PrintValue(name + "\t=>")
 	for x := next(); x != nil; x = next() {
 		x.PrintValue(" ->")

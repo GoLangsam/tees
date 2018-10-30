@@ -41,14 +41,14 @@ const (
 //
 //  next := kata.Walker(e)
 //  for e := next(), e != nil, e = next() { /* ... */ }
-type Walk func() Here
+type Walk func() *Here
 
 // ========================================================
 // from returns the Here (or nil) reached from e by applying GoTo
-func (g GoTo) from(e Here) (Here, Distance) {
+func (g GoTo) from(e *Here) (*Here, Distance) {
 
 	var dist Distance = 0
-	var next Here = e
+	var next *Here = e
 
 	if e != nil {
 		switch g {

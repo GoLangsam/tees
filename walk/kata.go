@@ -10,9 +10,9 @@ type Kata []GoTo // Japanese
 // ========================================================
 
 // From returns the Here (or nil) reached from e by steps
-func (steps Kata) From(e Here) (Here, Distance) {
+func (steps Kata) From(e *Here) (*Here, Distance) {
 	var dist, dnow Distance
-	var goal = e
+	goal := e
 
 	for _, step := range steps {
 		if goal == nil {
@@ -26,11 +26,11 @@ func (steps Kata) From(e Here) (Here, Distance) {
 
 // ========================================================
 
-// Grab returns all Heres reached from e by steps
-// until nil or same is found
+// Grab returns the Trail reached from e by steps
+// until Here is nil or same
 // Note: Grab may be useful in debugging, as it returns a full trace
 // To Grab is not intended for regular use - Don't be greedy :-)
-func (steps Kata) Grab(e Here) (Trail, Distance) {
+func (steps Kata) Grab(e *Here) (Trail, Distance) {
 	var dist, dnow Distance
 	var goal = e
 	last := goal
@@ -49,10 +49,10 @@ func (steps Kata) Grab(e Here) (Trail, Distance) {
 
 // ========================================================
 
-// Haul returns the Heres (or nil) From e by repeating steps
-// until nil or seen is found
-func (steps Kata) Haul(e Here) (Trail, Distance) {
-	var seen = make(map[Here]bool)
+// Haul returns the Trail From e by repeating steps
+// until Here has been seen before, or becomes nil
+func (steps Kata) Haul(e *Here) (Trail, Distance) {
+	var seen = make(map[*Here]bool)
 	var dist, dnow Distance
 	var goal = e
 	goals := make(Trail, 0, len(steps)*8)
@@ -71,12 +71,12 @@ func (steps Kata) Haul(e Here) (Trail, Distance) {
 // Iterator
 
 // Walker returns an iterator repeating Kata.From(e) ...
-func (steps Kata) Walker(e Here) Walk {
-	var seen = make(map[Here]bool)
+func (steps Kata) Walker(e *Here) Walk {
+	var seen = make(map[*Here]bool)
 	var curr = e
 	var kata = steps
 
-	var move Walk = func() Here {
+	var move Walk = func() *Here {
 		seen[curr] = true
 		if curr == nil {
 			return nil
