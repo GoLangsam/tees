@@ -8,6 +8,7 @@ import (
 	"github.com/GoLangsam/tees"
 )
 
+// Dancing is what dancer needs to dance.
 type Dancing struct {
 	Dance func(*tees.Tees)
 

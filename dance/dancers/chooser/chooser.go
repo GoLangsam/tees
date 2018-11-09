@@ -6,6 +6,7 @@
 choose.go defines the signature of a choosing function
 
 */
+
 package chooser
 
 import (

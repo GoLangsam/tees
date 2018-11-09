@@ -10,6 +10,8 @@ import (
 	"github.com/GoLangsam/tees/dance/dancing/turn"
 )
 
+// Dancing consolidates beet, deeh and turn Dancings
+// and allows to keep track of the Level
 type Dancing struct {
 	Beating *beat.Dancing
 	Dancing *deeh.Dancing
@@ -18,6 +20,8 @@ type Dancing struct {
 	Level int
 }
 
+// New returns a fresh Dancing
+// with applicable verbosities set
 func New(vd, vb, vt bool) *Dancing {
 	var d = new(Dancing)
 

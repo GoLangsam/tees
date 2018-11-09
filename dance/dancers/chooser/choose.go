@@ -6,6 +6,7 @@
 chooser.go defines some Choose-functions to choose sth for a dancer to dance on
 
 */
+
 package chooser
 
 // ========================================================

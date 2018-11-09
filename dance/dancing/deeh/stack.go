@@ -3,9 +3,8 @@
 // license that can be found in the LICENSE file.
 
 /*
-package deeh provides a normal (=non-concurrency-safe) stack
+Package deeh provides a normal (=non-concurrency-safe) stack
 for *Element
-
 */
 package deeh
 
@@ -15,7 +14,7 @@ import (
 
 // Stack implements a normal (=non-concurrency-safe) stack
 // for *Element
-
+// based on a slice, and never shrinking
 type Stack struct {
 	stack []*Element
 }

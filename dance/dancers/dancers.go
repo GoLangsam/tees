@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// package dancers provides factories of
+// Package dancers provides factories of
 // exemplary and default implementations
 // of the constituents common to dancers
 // (read: what it takes to be a dancer)

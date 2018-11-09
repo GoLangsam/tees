@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-package spinner provides some Dance- and Turn-functions which
+Package spinner provides some Dance- and Turn-functions which
 keep a dancer busy dancing a dance on sth in search for goals, or turning back
 */
 package spinner
