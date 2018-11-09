@@ -7,7 +7,7 @@ package spinner
 // ========================================================
 
 // GetTurners returns all turners defined in this package as a slice,
-// which can be useful in benchmarking comparsions
+// which can be useful in benchmarking comparisons
 func GetTurners() []Turner {
 	var c = make([]Turner, 0, 5)
 	c = append(c, TurnFast)

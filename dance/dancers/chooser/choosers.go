@@ -13,7 +13,7 @@ package chooser
 // ========================================================
 
 // GetChoosers returns all choosers defined in this package as a slice,
-// which can be useful in benchmarking comparsions
+// which can be useful in benchmarking comparisons
 func GetChoosers() []Chooser {
 	var c = make([]Chooser, 0, 5)
 	c = append(c, ChooseUpto3)

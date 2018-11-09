@@ -7,7 +7,7 @@ package spinner
 // ========================================================
 
 // GetDancers returns all dancers defined in this package as a slice,
-// which can be useful in benchmarking comparsions
+// which can be useful in benchmarking comparisons
 func GetDancers() []Spinner {
 	var c = make([]Spinner, 0, 5)
 	c = append(c, Dance)

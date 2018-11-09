@@ -38,7 +38,7 @@ func ChooseFront(among *Tees) (*Tees, bool) {
 
 // ChooseShort returns the shortest column
 //	- it's the preferred method of choice
-//	- it returns false on zero-lenght as there is no point in trying such
+//	- it returns false on zero-length as there is no point in trying such
 func ChooseShort(among *Tees) (*Tees, bool) {
 	var found bool = false
 	var c *Tees
