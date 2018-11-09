@@ -32,7 +32,7 @@ func New(vd, vb, vt bool) *Dancing {
 
 	Verbose = VerboseType(vd)
 	beat.Verbose = beat.VerboseType(vb)
-//	deeh.Verbose = deeh.VerboseType(vl)	// intentionally does not Verbose
+	//eh.Verbose = deeh.VerboseType(vl)	// intentionally does not Verbose
 	turn.Verbose = turn.VerboseType(vt)
 
 	return d

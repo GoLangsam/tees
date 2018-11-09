@@ -25,7 +25,8 @@ type Dance struct {
 
 // ========================================================
 
-var INI_Depth = 100
+// InitialDepth of space allocation for stack and drum
+var InitialDepth = 100
 
 // NewDance returns a fresh Dance
 //
@@ -38,8 +39,8 @@ func NewDance(v, vg, rh, vd, vb, vc bool) *Dance {
 
 	d.Dancer = dancing.New(vb, rh, false) // TODO: ??? arg for turn.Verbose
 
-	d.Stacker = stacker.New(INI_Depth)
-	d.Drummer = drummer.NewDrums(INI_Depth, vd)
+	d.Stacker = stacker.New(InitialDepth)
+	d.Drummer = drummer.NewDrums(InitialDepth, vd)
 
 	d = d.setBeating()
 	d = d.setDancing()

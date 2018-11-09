@@ -27,8 +27,8 @@ type GoTo uint8 // func( from Here ) (to Here)
 // for a Atas it is the 'radius', the max of it's Kata's distances
 type Distance int
 
+// Basic ways to Step from some element to another
 const (
-	// Basic ways to Step from some element to another
 	Next GoTo = iota
 	Prev
 	Away

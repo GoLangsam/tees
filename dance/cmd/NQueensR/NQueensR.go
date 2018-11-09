@@ -58,9 +58,10 @@ func flagParse() {
 
 // ========================================================
 
+// Chooser - for chooser tests
 var Chooser chooser.Chooser = chooser.ChooseShort // default
 
-func NQueensR(anz int) {
+func nQueensR(anz int) {
 
 	runtime.GC()
 
@@ -87,63 +88,64 @@ func NQueensR(anz int) {
 
 // ========================================================
 
-func NQueensRDancingTest(beg, end int) {
+func nQueensRDancingTest(beg, end int) {
 	for i := beg; i <= end; i++ {
 		fmt.Println()
 		fmt.Println("Queens on a", i, "*", i, "Board")
-		DancingTest(i)
+		dancingTest(i)
 	}
 }
-func DancingTest(anz int) {
+
+func dancingTest(anz int) {
 	*fastF, *listF, *slowF = true,  false, false
 	fmt.Println("Dacing Fast")
-	NQueensR(anz)
+	nQueensR(anz)
 
 //	time.Sleep(1 * time.Second)
 	*fastF, *listF, *slowF = false, false, false
 	fmt.Println("Dacing norm")
-	NQueensR(anz)
+	nQueensR(anz)
 
 //	time.Sleep(1 * time.Second)
 	*fastF, *listF, *slowF = false, false, true
 	fmt.Println("Dacing Slow")
-	NQueensR(anz)
+	nQueensR(anz)
 
 //	time.Sleep(1 * time.Second)
 	*fastF, *listF, *slowF = false, true,  false
 	fmt.Println("Dacing List")
-	NQueensR(anz)
+	nQueensR(anz)
 }
 
 // ========================================================
 
-func NQueensRChooserTest(beg, end int) {
+func nQueensRChooserTest(beg, end int) {
 	for i := beg; i <= end; i++ {
 		fmt.Println()
 		fmt.Println("Queens on a", i, "*", i, "Board")
-		ChooserTest(i)
+		chooserTest(i)
 	}
 }
-func ChooserTest(anz int) {
+func chooserTest(anz int) {
 	for i, c := range chooser.GetChoosers() {
 		Chooser = c
 		fmt.Println("Chooser No", i+1, "=", chooser.ChooserName(i))
-		NQueensR(anz)
+		nQueensR(anz)
 	}
 }
 
-func ChooserNQueensRTest(beg, end int) {
+func chooserNQueensRTest(beg, end int) {
 	for i, c := range chooser.GetChoosers() {
 		Chooser = c
 		fmt.Println()
 		fmt.Println("Chooser No", i+1, "=", chooser.ChooserName(i))
-		NQueensRTest(beg, end)
+		nQueensRTest(beg, end)
 	}
 }
-func NQueensRTest(beg, end int) {
+func nQueensRTest(beg, end int) {
 	for i := beg; i <= end; i++ {
 		fmt.Println("Queens on a", i, "*", i, "Board")
-		NQueensR(i)
+		nQueensR(i)
 	}
 }
 
@@ -155,24 +157,24 @@ func main() {
 
 	if *tests {
 		if *beg == *end {
-			NQueensRChooserTest(*beg, *end)
+			nQueensRChooserTest(*beg, *end)
 		} else {
-			ChooserNQueensRTest(*beg, *end)
+			chooserNQueensRTest(*beg, *end)
 		}
 	} else if *dancs {
 		if *beg == *end {
-			NQueensRDancingTest(*beg, *end)
+			nQueensRDancingTest(*beg, *end)
 		} else {
-			NQueensRDancingTest(*beg, *end)
+			nQueensRDancingTest(*beg, *end)
 		}
 	} else {
 		if *beg == *end {
 			fmt.Println()
 			fmt.Println("Queens on a", *beg, "*", *beg, "Board")
-			NQueensR(*beg)
+			nQueensR(*beg)
 		} else {
 			fmt.Println()
-			NQueensRTest(*beg, *end)
+			nQueensRTest(*beg, *end)
 		}
 	}
 }

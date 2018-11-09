@@ -38,7 +38,7 @@ func ChooseFront(among *Tees) (*Tees, bool) {
 //	- it's the preferred method of choice
 //	- it returns false on zero-length as there is no point in trying such
 func ChooseShort(among *Tees) (*Tees, bool) {
-	var found bool = false
+	var found bool
 	var c *Tees
 	s := 999999999
 	for j := among.Front(); j != nil; j = j.Next() {
@@ -87,7 +87,7 @@ func ChooseUpto3(among *Tees) (*Tees, bool) {
 
 // ChooseUpto returns the first column not longer than min
 func ChooseUpto(among *Tees, min int) (*Tees, bool) {
-	var found bool = false
+	var found bool
 	var c *Tees
 	s := 999999999
 	for j := among.Front(); j != nil; j = j.Next() {

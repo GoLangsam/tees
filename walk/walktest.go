@@ -18,6 +18,7 @@ type KataAkas interface {
 	Walker(Here) Walk
 }
 
+// PrintFullWalk shows From, Grab and Haul from here.
 func (steps Kata) PrintFullWalk(e *Here) {
 	fmt.Print("From: ")
 	from, d := steps.From(e)
@@ -55,6 +56,7 @@ func (steps Kata) PrintFullWalk(e *Here) {
 	fmt.Printf("\tDistance: %v\n", d)
 }
 
+// PrintFullWalk shows From, Grab and Haul from here
 func (jumps Akas) PrintFullWalk(e *Here) {
 	fmt.Print("From: ")
 	from, d := jumps.From(e)
@@ -96,14 +98,17 @@ func (jumps Akas) PrintFullWalk(e *Here) {
 	fmt.Printf("\tDistance: %v\n", d)
 }
 
+// PrintWalker prints a Walkers route from Here
 func (steps Kata) PrintWalker(name string, from *Here) {
 	steps.Walker(from).Print(name, from)
 }
 
+// PrintWalker prints a Walkers route from Here
 func (jumps Akas) PrintWalker(name string, from *Here) {
 	jumps.Walker(from).Print(name, from)
 }
 
+// Print a Walk from Here
 func (next Walk) Print(name string, from *Here) {
 	from.PrintValue(name + "\t=>")
 	for x := next(); x != nil; x = next() {
