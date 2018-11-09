@@ -2,16 +2,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package test_test
-
-import (
-	"github.com/GoLangsam/tees/list/test"
-)
+package test
 
 func ExampleBoard() {
 	var N = 4
 	var M = 5
-	var board = test.Board(N, M)
+	var board = Board(N, M)
 	board.PrintAways("Board")
 	board.AwayList().PrintAways("Board-Away")
 	// Output:
