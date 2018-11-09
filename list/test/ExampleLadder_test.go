@@ -2,15 +2,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package test_test
-
-import (
-	"github.com/GoLangsam/tees/list/test"
-)
+package test
 
 func ExampleLadder() {
 	var N = 7
-	var l = test.Ladder(N)
+	var l = Ladder(N)
 
 	l.PrintAways("Ladder")
 	l.AwayList().PrintAways("Ladder-Away")

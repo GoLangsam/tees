@@ -2,15 +2,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package test_test
-
-import (
-	"github.com/GoLangsam/tees/list/test"
-)
+package test
 
 func ExampleStick() {
 	var N = 7
-	var s = test.Stick(N)
+	var s = Stick(N)
 
 	s.PrintAways("Stick")
 	s.AwayList().PrintAways("Stick-Away")
