@@ -4,7 +4,7 @@
 
 /*
 moveto.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpfull, such as:
+with stuff, which is considered useful and helpful, such as:
 
 	- e.MoveToPrevOf( *Element ) *Element
 	- e.MoveToNextOf( *Element ) *Element	// TODO:
