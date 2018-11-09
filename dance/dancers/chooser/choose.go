@@ -2,11 +2,8 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/*
-chooser.go defines some Choose-functions to choose sth for a dancer to dance on
 
-*/
-
+// Package chooser defines some Choose-functions to choose sth for a dancer to dance on
 package chooser
 
 // ========================================================
@@ -76,19 +73,19 @@ func ChooseUpto1(among *Tees) (*Tees, bool) {
 	return ChooseUpto(among, 1)
 }
 
-// ChooseUpto1 returns the first column not longer than 2
+// ChooseUpto2 returns the first column not longer than 2
 func ChooseUpto2(among *Tees) (*Tees, bool) {
 	return ChooseUpto(among, 2)
 }
 
-// ChooseUpto1 returns the first column not longer than 3
+// ChooseUpto3 returns the first column not longer than 3
 func ChooseUpto3(among *Tees) (*Tees, bool) {
 	return ChooseUpto(among, 3)
 }
 
 // ========================================================
 
-// ChooseBelow returns the first column not longer than min
+// ChooseUpto returns the first column not longer than min
 func ChooseUpto(among *Tees, min int) (*Tees, bool) {
 	var found bool = false
 	var c *Tees

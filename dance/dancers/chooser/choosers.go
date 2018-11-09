@@ -8,6 +8,7 @@ choosers.go provides the Choosers, and a poor-mans lookup of their names.
 TODO(AP): Redo this stupid implemntation
 
 */
+
 package chooser
 
 // ========================================================

@@ -19,7 +19,7 @@ TODO: "Turner" returns an hauling iterator roundrobbing it's akas
 
 package walk
 
-// GoTo's represent basic functions to Step from some element to another existing element (or nil)
+// GoTo is the type of basic functions to Step from some element to another existing element (or nil)
 type GoTo uint8 // func( from Here ) (to Here)
 
 // Distance represents the 'length' of some movement
@@ -28,6 +28,7 @@ type GoTo uint8 // func( from Here ) (to Here)
 type Distance int
 
 const (
+	// Basic ways to Step from some element to another
 	Next GoTo = iota
 	Prev
 	Away
@@ -47,7 +48,7 @@ type Walk func() *Here
 // from returns the Here (or nil) reached from e by applying GoTo
 func (g GoTo) from(e *Here) (*Here, Distance) {
 
-	var dist Distance = 0
+	var dist Distance
 	var next *Here = e
 
 	if e != nil {

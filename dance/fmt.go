@@ -10,13 +10,14 @@ import (
 
 // ========================================================
 
+// Print forwards to Drummer
 func (d *Dance) Print() {
 	d.Drummer.Print()
 }
 
 // ========================================================
 
-// Print prints the current stack (= the solution)
+// PrintGoal prints the current stack (= the solution)
 func (d *Dance) PrintGoal() {
 	fmt.Print("Solution: ")
 	fmt.Println(d.Stacker.Len())

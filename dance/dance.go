@@ -13,6 +13,7 @@ import (
 	stacker "github.com/GoLangsam/tees/dance/dancing/deeh" // TODO(AP): find a better place
 )
 
+// Dance is what dancer loves to do.
 type Dance struct {
 	Dancer *dancing.Dancing
 
@@ -26,6 +27,9 @@ type Dance struct {
 
 var INI_Depth = 100
 
+// NewDance returns a fresh Dance
+//
+// Verbosity is set accordingly
 func NewDance(v, vg, rh, vd, vb, vc bool) *Dance {
 	var d = new(Dance)
 	Verbose = VerboseType(v)
@@ -87,13 +91,14 @@ func (d *Dance) onGoal(l *tees.Tees) bool { // Do we have a solution
 			d.PrintGoal()
 		} // ... we may show it
 		return true
-	} else {
-		return false
 	}
+
+	return false
 }
 
 // ========================================================
 
+// DefaultDance returns the default dancing function
 func (d *Dance) DefaultDance(dancing *dancing.Dancing, list *tees.Tees) func() {
 	return func() { spinner.Dance(dancing, list) }
 }
