@@ -94,6 +94,7 @@ func (l *List) Home() *Element {
 	if l == nil {
 		return nil
 	}
+	//	if l.root == nil { return l.root }
 	return l.root.Away()
 }
 

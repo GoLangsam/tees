@@ -47,7 +47,7 @@ type iterator interface {
 	ForEachNext(f func(*list.Element))
 }
 
-// trailer represents a finite iterator with known lenght
+// trailer represents a finite iterator with known length
 type trailer interface {
 	iterator
 	Len() int
