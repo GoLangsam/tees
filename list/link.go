@@ -28,8 +28,8 @@ package list
 // UnLeaf removes it temporarily.
 func (l *List) UnLeaf(d *Dancing) {
 	for e := l.root.next; e != &l.root; e = e.next {
-		e.next.prev = e.prev
-		e.prev.next = e.next
+		// e.UnLeaf(d) - inlined for Performance
+		e.next.prev, e.prev.next = e.prev, e.next
 		e.list.len--
 		if d.OnLeaf != nil {
 			d.OnLeaf()
@@ -40,8 +40,8 @@ func (l *List) UnLeaf(d *Dancing) {
 // ReLeaf restores the temporarily Unleaf'ed/removed one.
 func (l *List) ReLeaf(d *Dancing) {
 	for e := l.root.prev; e != &l.root; e = e.prev {
-		e.next.prev = e
-		e.prev.next = e
+		// e.ReLeaf(d) - inlined for Performance
+		e.next.prev, e.prev.next = e, e
 		e.list.len++
 	}
 }
@@ -66,6 +66,7 @@ func (e *Element) ReLeaf(d *Dancing) {
 // UnLink l temporarily from it's away's
 func (l *List) UnLink() {
 	for e := l.root.next; e != &l.root; e = e.next {
+		// e.UnLink() - inlined for Performance
 		e.away.next.prev = e.away.prev
 		e.away.prev.next = e.away.next
 		e.away.list.len--
@@ -75,6 +76,7 @@ func (l *List) UnLink() {
 // ReLink temporarily UnLink'ed l back to it's away's
 func (l *List) ReLink() {
 	for e := l.root.prev; e != &l.root; e = e.prev {
+		// e.ReLink() - inlined for Performance
 		e.away.next.prev = e.away
 		e.away.prev.next = e.away
 		e.away.list.len++
