@@ -8,14 +8,10 @@ import (
 	"fmt"
 )
 
-func width(anz int64) int {
+func width(anz int) int {
 	// too lazy to use log ;-)
 
 	switch {
-	case anz > 99999999999:
-		return 12
-	case anz > 9999999999:
-		return 11
 	case anz > 999999999:
 		return 10
 	case anz > 99999999:
@@ -39,23 +35,26 @@ func width(anz int64) int {
 	}
 }
 
-func getFormatWidthPaddingZeros(anz int64) string {
+func getFormatWidthPaddingZeros(anz int) string {
 	return "%0" + fmt.Sprintf("%d", width(anz)) + "d"
 }
 
-func getFormatWidthPaddingSpaces(anz int64) string {
+func getFormatWidthPaddingSpaces(anz int) string {
 	return "% " + fmt.Sprintf("%d", width(anz)) + "d"
+}
+
+func getFormatWidth(prefix string, anz int) string {
+	if prefix == "" {
+		return "%s" + getFormatWidthPaddingSpaces(int(anz))
+	}
+	return "%s" + getFormatWidthPaddingZeros(int(anz))
 }
 
 // IDs returns a slice of size-adjusted IDs.
 func IDs(prefix string, anz int) []string {
 
 	var s = make([]string, 0, anz)
-	var f = "%s" + getFormatWidthPaddingZeros(int64(anz))
-
-	if prefix == "" {
-		f = "%s" + getFormatWidthPaddingSpaces(int64(anz))
-	}
+	var f = getFormatWidth(prefix, anz)
 
 	for i := 0; i < anz; i++ {
 		id := fmt.Sprintf(f, prefix, i+1)
