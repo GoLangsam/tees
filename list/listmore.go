@@ -3,61 +3,56 @@
 // license that can be found in the LICENSE file.
 
 /*
-listmore.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+listmore.go extends list.go with:
 
-	- NewList( v, vals... )	returns a list, the Root() of which carries v as Value
+	- NewList( vals... )	*List
+	- l.New( vals... )		*List
+	- e.New( vals... )		*Element // == Root()
 
-	- l.Clear()		*List
-
-	- l.Equals( *List )	bool
+	- l.Equals( *List )		bool
 	- e.Equals( *Element )	bool
 
-	- e.List()		*List
+	- e.IsRoot()			bool
+	- e.IsNode()			bool
 
-	- l.Root()		*Element
-	- e.Root()		*Element
-
-	- l.Next()		*Element
-	- l.Prev()		*Element
-
-	- e.Front()		*Element
-	- e.Back()		*Element
-
-	- e.IsRoot()		bool
-	- e.IsNode()		bool
-
-	- l.IsEmpty()		bool
-
+	- l.IsEmpty()			bool
 */
 
 package list
 
 // ===========================================================================
 
-// NewList returns a list of vals the Root() of which carries v (and is Away to nil).
-func NewList(v interface{}, vals ...interface{}) *List {
+// NewList returns a new list
+// the Root() of which carries vals[0] (if any)
+// and the list has elements vals[1:] (if any)
+func NewList(vals ...interface{}) *List {
 	var list = New()
-	list.root.Value = v
-	for _, val := range vals {
-		list.PushBack(val)
+	if len(vals) > 0 {
+		list.root.Value = vals[0]
+		for i := range vals[1:] {
+			list.PushBack(vals[1+i])
+		}
 	}
+
 	return list
+}
+
+// New returns a new list
+// the Root() of which carries vals[0] (if any)
+// and the list has elements vals[1:] (if any)
+func (l *List) New(vals ...interface{}) *List {
+	return NewList(vals...)
+}
+
+// New returns the root element of a new list
+// the Root() of which carries vals[0] (if any)
+// and the list has elements vals[1:] (if any)
+func (e *Element) New(vals ...interface{}) *Element {
+	return NewList(vals...).Root()
 }
 
 // ===========================================================================
 // func (l *List) ...
-
-// Clear disconnects all list elements from the list l.
-func (l *List) Clear() *List {
-	l.root.next = &l.root
-	l.root.prev = &l.root
-	//	l.root.away	// not touched (different from Init() )
-	l.root.list = l
-	l.len = 0
-	return l
-
-}
 
 // ===========================================================================
 // Binary => bool
@@ -91,89 +86,29 @@ func (e *Element) Equals(i *Element) bool {
 
 // ===========================================================================
 
-// List returns the list this element belongs to
-func (e *Element) List() *List {
-	return e.list
-}
-
-// ===========================================================================
-// Move => *Element
-
-// Note: A rather "compact" Element would return
-// e.Root() == e (or is it not?)
-// e.Len() == 0
-// e.Front() == e
-// e.Back() == e
-// and this would be a very very boring world ;-)
-
-// Root returns the root element of list l
-func (l *List) Root() *Element {
-	return &l.root
-}
-
-// Root returns the Root of this elements list
-func (e *Element) Root() *Element {
-	if &e.list == nil {
-		return nil
-	}
-	return e.list.Root()
-}
-
-// Prev returns the root element of list l
-func (l *List) Prev() *Element {
-	return l.root.prev
-}
-
-// Next returns the root element of list l
-func (l *List) Next() *Element {
-	return l.root.next
-}
-
-// Front returns the Front of this elements list
-func (e *Element) Front() *Element {
-	if &e.list == nil {
-		return nil
-	}
-	return e.list.Front()
-}
-
-// Back returns the Back of this elements list
-func (e *Element) Back() *Element {
-	if &e.list == nil {
-		return nil
-	}
-	return e.list.Back()
-}
-
-// => int
-
-// Len returns the number of elements in the list of e,
-// or 0 (zero), if e.IsRoot or -1 if e.list == nil
-// The complexity is O(1).
-func (e *Element) Len() int {
-	if &e.list == nil {
-		return -1
-	}
-	if e.IsRoot() {
-		return 0
-	}
-	return e.list.Len()
-}
-
 // => bool
 
-// IsRoot reports whether the element e is Root() of it's list.
+// IsRoot reports whether the element e is Root() of it's list
+// unless it's nil, belongs to nil list or list's root is nil
 func (e *Element) IsRoot() bool {
+	if &e == nil || &e.list == nil || &e.list.root == nil {
+		return false
+	}
 	return (e == &e.list.root)
 }
 
-// IsNode - An element which is not root can be seen as a node.
+// IsNode - any element which !IsRoot can be seen as a node
+// unless it's nil, belongs to nil list or list's root is nil
 func (e *Element) IsNode() bool {
+	if &e == nil || &e.list == nil || &e.list.root == nil {
+		return false
+	}
 	return (e != &e.list.root)
 }
 
 // IsEmpty reports whether the list l is empty.
-// Note: Does not evaluate Len(), as this could be temporarily scrambled.
+// Note: Does not evaluate Len(), as this could be scrambled temporarily
 func (l *List) IsEmpty() bool {
+	l.lazyInit()
 	return l.root.next == &l.root
 }
