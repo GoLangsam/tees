@@ -3,8 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-link.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+link.go extends list.go with:
 
 	- l.UnLeaf( d *Dancing )
 	- l.ReLeaf( d *Dancing )
@@ -18,7 +17,7 @@ with stuff, which is considered useful and helpful, such as:
 	- e.UnLink()
 	- e.ReLink()
 
-Note: For good performance, the functions are implemented directly
+Note: For good performance, the functions are implemented using the internal data structure.
 */
 
 package list

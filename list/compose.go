@@ -3,8 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-compose.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+compose.go extends list.go with:
 
 	- l.With( *List )		*ComposedValue
 	- e.With( *Element )		*ComposedValue
@@ -18,6 +17,8 @@ with stuff, which is considered useful and helpful, such as:
 	- l.IsAtom()			bool
 	- e.IsAtom()			bool
 
+	- l.AtomValues()		Values
+	- e.AtomValues()		Values
 */
 
 package list

@@ -3,8 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-fmt.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+fmt.go extends list.go with:
 
 	- l.Print()
 
@@ -13,7 +12,6 @@ with stuff, which is considered useful and helpful, such as:
 
 	- l.PrintAtomValues()
 	- e.PrintAtomValues()
-
 */
 
 package list
@@ -40,7 +38,7 @@ func (l *List) Print(args ...interface{}) {
 // PrintValue of l.Root()
 func (l *List) PrintValue(args ...interface{}) {
 	if l.print(args...) {
-		l.Root().printAtomValues()
+		l.Root().PrintValue()
 	}
 }
 
@@ -53,7 +51,7 @@ func (e *Element) PrintValue(args ...interface{}) {
 
 // ===========================================================================
 
-// PrintAtomValues prints each elements contents - front 'till end.
+// PrintAtomValues is a convenience to print a list with all elements atom values
 func (l *List) PrintAtomValues(args ...interface{}) {
 	if l.print(args...) {
 		fmt.Print("List=")
@@ -69,7 +67,7 @@ func (l *List) PrintAtomValues(args ...interface{}) {
 	}
 }
 
-// PrintAtomValues iterates down through any composed values and prints their contents.
+// PrintAtomValues is a convenience to print the atom values of e
 func (e *Element) PrintAtomValues(args ...interface{}) {
 	if e.print(args...) {
 		fmt.Print("Element=")

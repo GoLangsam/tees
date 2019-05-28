@@ -27,7 +27,7 @@ type Node interface {
 // Coll combines all methods unique to any list, and not shared with Element
 type Coll interface {
 	Init() *list.List
-	Clear() *list.List
+//	Clear() *list.List
 
 	Remove(*list.Element) interface{}
 

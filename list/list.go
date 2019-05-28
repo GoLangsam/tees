@@ -2,6 +2,9 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+// VERY slight additions:
+// Copyright 2016 Andreas Pannewitz. All rights reserved.
+
 // Package list implements a doubly linked list.
 //
 // To iterate over a list (where l is a *List):
@@ -9,7 +12,7 @@
 //		// do something with e.Value
 //	}
 //
-package list
+package list // stolen from "container\list"
 
 // Element is an element of a linked list.
 type Element struct {

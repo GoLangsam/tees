@@ -3,8 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-listtrix.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+listtrix.go extends list.go with:
 
 	- l.AddBeam
 	- l.AddList
@@ -13,7 +12,6 @@ with stuff, which is considered useful and helpful, such as:
 	- l.AddOnes
 
 	- l.Size
-
 */
 
 package list
@@ -22,9 +20,9 @@ package list
 
 // AddBeam returns a new list with root-value v and new elements with values dots,
 // the root of which is Junk'ed to a new PushBack-Element (with same value v) of l
-func (l *List) AddBeam(v interface{}, vals ...interface{}) *List {
+func (l *List) AddBeam(vals ...interface{}) *List {
 
-	var list = NewList(v, vals...)
+	var list = NewList(vals...)
 	return l.AddList(list)
 }
 
@@ -34,7 +32,7 @@ func (l *List) AddBeam(v interface{}, vals ...interface{}) *List {
 func (l *List) AddList(list *List) *List {
 
 	var head = l.PushBack(l.With(list))
-	list.root.Junk(head) //	:SameAs head.Junk( list.Root() )
+	list.root.Junk(head) //	:SameAs head.Junk(list.Root())
 
 	return list
 }

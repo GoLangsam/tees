@@ -3,12 +3,10 @@
 // license that can be found in the LICENSE file.
 
 /*
-fmt_away.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+fmt_away.go extends list.go with:
 
 	- l.PrintAways()
 	- e.PrintAways()
-
 */
 
 package list

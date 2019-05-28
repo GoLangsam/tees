@@ -3,13 +3,10 @@
 // license that can be found in the LICENSE file.
 
 /*
-away.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+awaymany.go extends list.go with:
 
 	- l.AwayLists()		[]*List
 	- e.AwayLists()		[]*List
-
-
 */
 
 package list

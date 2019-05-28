@@ -3,12 +3,10 @@
 // license that can be found in the LICENSE file.
 
 /*
-danceslow.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+danceslow.go extends list.go with:
 
 	- l.DanceSlow( d *Dancing )
 	- e.DanceSlow( d *Dancing )
-
 */
 
 package list

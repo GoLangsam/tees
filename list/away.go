@@ -3,8 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /*
-away.go extends the (stolen and extended) list.go
-with stuff, which is considered useful and helpful, such as:
+away.go extends list.go with:
 
 	- e.Junk (x *Element)	// cross-links Away's
 	- l.Join (x *List)	// cross-links Away's of Root() of two lists
@@ -28,7 +27,6 @@ with stuff, which is considered useful and helpful, such as:
 
 	- l.IsJunk()		bool
 	- e.IsJunk()		bool
-
 */
 
 package list
