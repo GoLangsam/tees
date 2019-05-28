@@ -5,9 +5,9 @@
 package list_test
 
 import (
-	"github.com/GoLangsam/tees/list"
-
 	"fmt"
+
+	"github.com/GoLangsam/tees/list"
 )
 
 func ExampleElement_Value() {
