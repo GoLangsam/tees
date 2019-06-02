@@ -47,6 +47,7 @@ func (l *List) ReLeaf(d *Dancing) {
 
 // UnLeaf removes it temporarily.
 func (e *Element) UnLeaf(d *Dancing) {
+	// e.UnLink() - inlined for Performance
 	e.next.prev, e.prev.next = e.prev, e.next
 	e.list.len--
 	if d.OnLeaf != nil {
@@ -56,6 +57,7 @@ func (e *Element) UnLeaf(d *Dancing) {
 
 // ReLeaf restores the temporarily Unleaf'ed/removed one.
 func (e *Element) ReLeaf(d *Dancing) {
+	// e.ReLink() - inlined for Performance
 	e.next.prev, e.prev.next = e, e
 	e.list.len++
 }
