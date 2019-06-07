@@ -20,6 +20,7 @@ type Dance struct {
 	Stacker *stacker.Stack
 	Drummer *drummer.Drums
 
+	VerboseLeafs bool
 	VerboseGoals bool
 }
 
@@ -33,7 +34,7 @@ var InitialDepth = 100
 // Verbosity is set accordingly
 func NewDance(v, vg, rh, vd, vb, vc bool) *Dance {
 	var d = new(Dance)
-	Verbose = VerboseType(v)
+	d.VerboseLeafs = v
 	d.VerboseGoals = vg
 	chooser.Verbose = chooser.VerboseType(vc)
 
@@ -78,7 +79,7 @@ func (d *Dance) setTurning() *Dance {
 // ========================================================
 
 func (d *Dance) onLeaf(l *tees.Tees) bool { // Do we have to abort?
-	if Verbose {
+	if d.VerboseLeafs {
 		d.Stacker.Top().PrintValue("Stack-Top")
 		l.PrintValue()
 		l.PrintAways()
