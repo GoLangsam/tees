@@ -2,6 +2,13 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+/*
+Package stack provides a normal (=non-concurrency-safe) stack
+for anything (interface{})
+
+Note: the very crisp implementation was found in cmd/go/pkg.go importStack
+*/
+
 package deeh
 
 import (
@@ -11,9 +18,7 @@ import (
 // Stack implements a normal (=non-concurrency-safe) stack
 // for *Element
 // based on a slice, and never shrinking
-type Stack struct {
-	stack []*Element
-}
+type Stack []*Element
 
 // New returns a new empty stack with given initial capacity
 func New(cap int) *Stack {
@@ -22,8 +27,10 @@ func New(cap int) *Stack {
 
 // Init returns an empty stack with given initial capacity
 func (s *Stack) Init(cap int) *Stack {
-	s.stack = make([]*Element, 0, cap)
-	return s
+	// return &Stack{make([]*Element, 0, cap)} // 
+
+	*s = make([]*Element, 0, cap)
+	return s 
 }
 
 // Push sth onto the current stack
@@ -31,7 +38,7 @@ func (s *Stack) Push(l *Element) {
 	//	s.Lock()
 	//	defer s.Unlock()
 
-	s.stack = append(s.stack, l)
+	*s = append(*s, l)
 }
 
 // Pop sth off the current stack
@@ -39,8 +46,8 @@ func (s *Stack) Pop() *Element {
 	//	s.Lock()
 	//	defer s.Unlock()
 
-	var p = s.stack[len(s.stack)-1]
-	s.stack = s.stack[:len(s.stack)-1]
+	p := (*s)[len(*s)-1]
+	*s = (*s)[0 : len(*s)-1]
 	return p
 }
 
@@ -49,9 +56,7 @@ func (s *Stack) Drop() {
 	//	s.Lock()
 	//	defer s.Unlock()
 
-	//	var p = s.stack[len(s.stack)-1]
-	s.stack = s.stack[:len(s.stack)-1]
-	return // p
+	*s = (*s)[0 : len(*s)-1]
 }
 
 // Top returns the top of the current stack
@@ -59,7 +64,7 @@ func (s *Stack) Top() *Element {
 	//	s.Lock()
 	//	defer s.Unlock()
 
-	return s.stack[len(s.stack)-1]
+	return (*s)[len(*s)-1]
 }
 
 // Get returns a copy of the current stack
@@ -67,8 +72,9 @@ func (s *Stack) Get() []*Element {
 	//	s.Lock()
 	//	defer s.Unlock()
 
-	var stack = make([]*Element, len(s.stack))
-	copy(stack, s.stack)
+	//	return append([]interface{}{}, *s...)
+	var stack = make([]*Element, len(*s))
+	copy(stack, *s)
 	return stack
 }
 
@@ -77,7 +83,7 @@ func (s *Stack) Len() int {
 	//	s.Lock()
 	//	defer s.Unlock()
 
-	return len(s.stack)
+	return len(*s)
 }
 
 // ========================================================
@@ -89,7 +95,7 @@ func (s *Stack) Print() {
 
 	fmt.Print("Solution: ")
 	fmt.Println(s.Len())
-	for _, c := range s.stack {
+	for _, c := range *s {
 		c.PrintValue()
 		fmt.Print(": ")
 		for e := c.Front(); e != nil; e = e.Next() {
