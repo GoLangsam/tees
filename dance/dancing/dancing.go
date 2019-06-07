@@ -18,6 +18,8 @@ type Dancing struct {
 	Turning *turn.Dancing
 
 	Level int
+	
+	Verbose bool
 }
 
 // New returns a fresh Dancing
@@ -28,9 +30,10 @@ func New(vd, vb, vt bool) *Dancing {
 	d.Beating = new(beat.Dancing)
 	d.Dancing = new(deeh.Dancing)
 	d.Turning = new(turn.Dancing)
-	d.Level = 0
 
-	Verbose = VerboseType(vd)
+	d.Level = 0
+	d.Verbose = vd
+
 	beat.Verbose = beat.VerboseType(vb)
 	//eh.Verbose = deeh.VerboseType(vl)	// intentionally does not Verbose
 	turn.Verbose = turn.VerboseType(vt)

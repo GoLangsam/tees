@@ -19,15 +19,15 @@ func Dance(d *dancing.Dancing, l *tees.Tees) {
 	}
 
 	if d.Turning.OnGoal(l){						// YES We have a solution
-		if dancing.Verbose {d.Beating.Dance(l)}			// ... we count our happyness
+		if d.Verbose {d.Beating.Dance(l)}			// ... we count our happyness
 		return
 	}
 	next, ok := d.Turning.OnFail(l); if !ok {			// YES We have a failure
-		if dancing.Verbose {d.Beating.OnFail()}			// ... we count our suffering
+		if d.Verbose {d.Beating.OnFail()}			// ... we count our suffering
 		return
 
 	} else {							// YES We have to go on goaling
-		if dancing.Verbose {d.Beating.OnGoal()}			// ... we count our effort
+		if d.Verbose {d.Beating.OnGoal()}			// ... we count our effort
 		if next == nil { panic("Confusing reply from Turning.OnFail: Cannot look into nil!")}
 	}
 	d.Level++
