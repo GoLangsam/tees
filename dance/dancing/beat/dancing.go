@@ -15,4 +15,6 @@ type Dancing struct {
 	OnGoal func()
 	OnFail func()
 	OnLeaf func()
+
+	Verbose bool
 }
