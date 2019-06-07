@@ -35,9 +35,13 @@ func ChooseFront(among *Tees) (*Tees, bool) {
 // ========================================================
 
 // ChooseShort returns the shortest column
-//	- it's the preferred method of choice
+//	- it's the preferred method of choice (MRV heuristic)
 //	- it returns false on zero-length as there is no point in trying such
 func ChooseShort(among *Tees) (*Tees, bool) {
+
+	if among == nil { panic( "Cannot choose from is nil!") }
+	if Verbose {	among.PrintAways("Choosing from: ")	}
+
 	var found bool
 	var c *Tees
 	s := 999999999
@@ -55,6 +59,7 @@ func ChooseShort(among *Tees) (*Tees, bool) {
 			}
 		}
 	}
+
 	if Verbose { c.PrintAways("Chosen: ") }
 	return c, found && c.Len() > 0
 }
@@ -87,6 +92,10 @@ func ChooseUpto3(among *Tees) (*Tees, bool) {
 
 // ChooseUpto returns the first column not longer than min
 func ChooseUpto(among *Tees, min int) (*Tees, bool) {
+
+	if among == nil { panic( "Cannot choose from is nil!") }
+	if Verbose {	among.PrintAways("Choosing from: ")	}
+
 	var found bool
 	var c *Tees
 	s := 999999999
@@ -105,6 +114,7 @@ func ChooseUpto(among *Tees, min int) (*Tees, bool) {
 			}
 		}
 	}
+
 	if Verbose { c.PrintAways("Chosen: ") }
 	return c, found && c.Len() > 0
 }
