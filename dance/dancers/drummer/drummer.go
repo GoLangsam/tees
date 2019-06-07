@@ -11,10 +11,10 @@ import (
 
 // Drums consolidates all needed drums
 type Drums struct {
-	Goal *drum.Drum // Niveaus counts dances per Level
-	Fail *drum.Drum // Deadend counts fail ends per Level
-	Call *drum.Drum // Grooves counts solutions per length
-	Leaf *drum.Drum // UpDates counts unLink per Level
+	Goal drum.Drum // Niveaus counts dances per Level
+	Fail drum.Drum // Deadend counts fail ends per Level
+	Call drum.Drum // Grooves counts solutions per length
+	Leaf drum.Drum // UpDates counts unLink per Level
 	// Note: No drum for Push & Pop, as these occur in sync with Call
 }
 
@@ -31,11 +31,10 @@ func (d *Drums) init(cap int, verbose bool) *Drums {
 	d.Call = drum.NewDrum("Niveaus", cap)
 	d.Leaf = drum.NewDrum("UpDates", cap)
 
-	if verbose {
-		drum.Verbose = true
-	} else {
-		drum.Verbose = false
-	}
+	d.Goal.Verbose = verbose
+	d.Fail.Verbose = verbose
+	d.Call.Verbose = verbose
+	d.Leaf.Verbose = verbose
 
 	return d
 }
