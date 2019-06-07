@@ -16,32 +16,34 @@ type Drums struct {
 	Call drum.Drum // Grooves counts solutions per length
 	Leaf drum.Drum // UpDates counts unLink per Level
 	// Note: No drum for Push & Pop, as these occur in sync with Call
+	Verbose bool
 }
 
 // NewDrums provides a fresh ensemble of drums
 func NewDrums(cap int, verbose bool) *Drums {
 	var d = new(Drums)
-	d = d.init(cap, verbose)
-	return d
+	return d.init(cap, verbose)
 }
 
 func (d *Drums) init(cap int, verbose bool) *Drums {
+	d.Verbose = verbose
+
 	d.Goal = drum.NewDrum("Grooves", cap)
 	d.Fail = drum.NewDrum("Deadend", cap)
 	d.Call = drum.NewDrum("Niveaus", cap)
 	d.Leaf = drum.NewDrum("UpDates", cap)
 
-	d.Goal.Verbose = verbose
-	d.Fail.Verbose = verbose
-	d.Call.Verbose = verbose
-	d.Leaf.Verbose = verbose
+	d.Goal.Verbose = d.Verbose
+	d.Fail.Verbose = d.Verbose
+	d.Call.Verbose = d.Verbose
+	d.Leaf.Verbose = d.Verbose
 
 	return d
 }
 
 // Print has all drums print iff Verbose
 func (d *Drums) Print() {
-	if Verbose {
+	if d.Verbose {
 		d.Goal.Print()
 		d.Fail.Print()
 		d.Call.Print()
