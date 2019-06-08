@@ -38,7 +38,7 @@ func FiveQueens() *list.List {
 	var A8 = diag.AddBeam("A8")
 
 	var scnd = list.NewList("secondary")
-	var B0 = scnd.AddBeam("A0")
+	var B0 = scnd.AddBeam("B0")
 	var B1 = scnd.AddBeam("B1")
 	var B2 = scnd.AddBeam("B2")
 	var B3 = scnd.AddBeam("B3")
