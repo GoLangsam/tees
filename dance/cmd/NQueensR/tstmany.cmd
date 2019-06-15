@@ -1,3 +1,6 @@
+call go version >sManyYes.txt
+call go version >sManyNo.txt
+
 NQueensR.exe -Beg 10 -End 10 -Sort -Fast -b >>sManyYes.txt
 NQueensR.exe -Beg 10 -End 10             -b >>sManyNo.txt
 
@@ -18,6 +21,8 @@ NQueensR.exe -Beg 15 -End 15             -b >>sManyNo.txt
 
 NQueensR.exe -Beg 16 -End 16 -Sort -Fast -b >>sManyYes.txt
 NQueensR.exe -Beg 16 -End 16             -b >>sManyNo.txt
+
+exit
 
 NQueensR.exe -Beg 17 -End 17 -Sort -Fast -b >>sManyYes.txt
 NQueensR.exe -Beg 17 -End 17             -b >>sManyNo.txt
