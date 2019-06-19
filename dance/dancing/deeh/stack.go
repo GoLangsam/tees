@@ -2,9 +2,11 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:pattern "github.com/GoLangsam/container/oneway/stack/stack.go"
+
 /*
 Package stack provides a normal (=non-concurrency-safe) stack
-for anything (interface{})
+for *Element
 
 Note: the very crisp implementation was found in cmd/go/pkg.go importStack
 */
