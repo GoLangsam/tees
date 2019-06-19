@@ -11,8 +11,8 @@ import (
 // ========================================================
 
 // New returns a new collection of Tees.
-func New(v interface{}, vals ...interface{}) *Tees {
-	return list.NewList(v, vals...)
+func New(vals ...interface{}) *Tees {
+	return list.NewList(vals...)
 }
 
 // ========================================================
