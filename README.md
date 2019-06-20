@@ -6,3 +6,11 @@
 [![GoDoc](https://godoc.org/github.com/GoLangsam/tees?status.svg)](https://godoc.org/github.com/GoLangsam/tees)
 
 An unconventional data structure for unconventional usage by unconventional players.
+
+---
+Your suggestions, remarks, questions and/or contributions are welcome ;-)
+
+---
+## Think deep - code happy - be simple - see clear :-)
+
+---
