@@ -36,10 +36,13 @@ func (l *List) PrintAways(args ...interface{}) {
 // PrintAways prints its away list.
 func (e *Element) PrintAways(args ...interface{}) {
 	if e.print(args...) {
-		if e.away == nil {
+		switch{
+		case e.away == nil:
 			fmt.Println("Element's Away is nil!")
-			return
+		case e.away.list == nil:
+			e.away.PrintAtomValues("=> ")		
+		default:
+			e.away.list.PrintAtomValues("=> ")
 		}
-		e.away.list.PrintAtomValues("=> ")
 	}
 }

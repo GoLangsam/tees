@@ -29,7 +29,9 @@ func (l *List) UnLeaf(d *Dancing) {
 	for e := l.root.next; e != &l.root; e = e.next {
 		// e.UnLeaf(d) - inlined for Performance
 		e.next.prev, e.prev.next = e.prev, e.next
-		e.list.len--
+		if e.list != nil {
+			e.list.len--
+		}
 		if d.OnLeaf != nil {
 			d.OnLeaf()
 		}
@@ -41,7 +43,9 @@ func (l *List) ReLeaf(d *Dancing) {
 	for e := l.root.prev; e != &l.root; e = e.prev {
 		// e.ReLeaf(d) - inlined for Performance
 		e.next.prev, e.prev.next = e, e
-		e.list.len++
+		if e.list != nil {
+			e.list.len++
+		}
 	}
 }
 
