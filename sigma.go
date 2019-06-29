@@ -15,17 +15,16 @@ package tees
 // Sigma returns the sum of the results of applying a given function f to each tee
 func Sigma(
 	f func(*aTee) int,
-	i iterator,
-) int {
-	if i == nil {
-		return 0
+	l iterator,
+) (result int) {
+
+	if l != nil {
+		for e := l.Front(); e != nil; e = e.Next() {
+			result += f(e)
+		}
 	}
 
-	var result = 0
-	for e := i.Front(); e != nil; e = e.Next() {
-		result += f(e)
-	}
-	return result
+	return
 }
 
 // Note: Sigma may also be expressed using
@@ -35,7 +34,7 @@ func Sigma(
 //	FoldInt(func(e *aTee, r int) int {return r + f(e)}, i, 0)
 func SigmaInt(
 	f func(*aTee) int,
-	i iterator,
-) int {
-	return FoldInt(func(e *aTee, r int) int { return r + f(e) }, i, 0)
+	l iterator,
+) (result int) {
+	return FoldInt(func(e *aTee, r int) int { return r + f(e) }, l, 0)
 }
