@@ -53,6 +53,12 @@ type trailer interface {
 	Len() int
 }
 
+// slicer represents a slice with known length
+type slicer interface {
+	Elements() []*list.Element
+	Len() int
+}
+
 // xrosser supports constructions such as Xross
 type xrosser interface {
 	trailer

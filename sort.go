@@ -10,12 +10,12 @@ import (
 
 // Arrange sorts t in place according to weight.
 // The sort is stable.
-func Arrange(t *Tees, weight func(*aTee) int) *Tees {
-	if t.Len() < 1 {
-		return t
+func Arrange(l slicer, weight func(*aTee) int) *Tees {
+	if l.Len() < 1 {
+		return l.(*Tees)
 	}
 
-	these := t.Elements()
+	these := l.Elements()
 	less := func(i, j int) bool { return weight(these[i]) < weight(these[j]) }
 	return Stable(these, less)
 }
@@ -39,12 +39,12 @@ func Stable(these []*aTee, less func(i, j int) bool) *Tees {
 // Weight returns both:
 //  a map of the elements with their respective weight and
 //  a map of the weights with their elements
-func Weight(t trailer, weight func(*aTee) int) (map[*aTee]int, map[int][]*aTee) {
-	var elems = make(map[*aTee]int, t.Len())
-	var sizes = make(map[int][]*aTee, t.Len())
+func Weight(l trailer, weight func(*aTee) int) (map[*aTee]int, map[int][]*aTee) {
+	var elems = make(map[*aTee]int, l.Len())
+	var sizes = make(map[int][]*aTee, l.Len())
 
 	var size int
-	for e := t.Front(); e != nil; e = e.Next() {
+	for e := l.Front(); e != nil; e = e.Next() {
 		size = weight(e)
 		elems[e] = size
 		sizes[size] = append(sizes[size], e)
