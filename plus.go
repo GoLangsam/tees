@@ -6,6 +6,7 @@ package tees
 
 // Append returns a new list: the union of l with some lists...
 // ( recursively as [[[ l + l ] + l ] ... ] )
+//
 // Note: Append( l, nil ) returns a new copy of l with composedValues
 // the root of which carries the CVs of the original l.Root()
 // and the elements carry the CVs of the original elements
@@ -26,21 +27,23 @@ func Append(l calcer, lists ...*Tees) *Tees {
 
 // plus returns a new list with len(X) + len(Y) Elements
 // representing the union of the list X plus Y
+//
 // Note: plus(X, nil ) returns a new copy of X with composedValues
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
 func plus(X calcer, Y *Tees) *Tees {
 	if X == nil {
 		return New(nil)
 	}
-	newl := New(X.CVs())
+
+	l := New(X.CVs())
 	for x := X.Front(); x != nil; x = x.Next() {
-		newl.PushBack(x.CVs())
+		l.PushBack(x.CVs())
 	}
 	if Y != nil {
 		for y := Y.Front(); y != nil; y = y.Next() {
-			newl.PushBack(y.CVs())
+			l.PushBack(y.CVs())
 		}
-		newl.Root().Value = X.With(Y)
+		l.Root().Value = X.With(Y)
 	}
-	return newl
+	return l
 }

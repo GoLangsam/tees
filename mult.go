@@ -6,6 +6,7 @@ package tees
 
 // Times returns a new list: the cross product of l with some lists...
 // ( recursively as [[[ l * l ] * l ] ... ] )
+//
 // Note: Times( l, nil ) returns a new empty list
 // the root of which carries the CVs of the original l.Root()
 // and the elements carry the CVs of the original elements
@@ -26,20 +27,22 @@ func Times(l calcer, lists ...*Tees) *Tees {
 
 // times returns a new list with len(X) * len(Y) Elements
 // representing the cross-product of the list X * Y
+//
 // Note: l.times( nil ) returns a new list with no elements
 // Note: The Away's in the new list point to nil - thus, the new list is isolated.
 func times(X calcer, Y *Tees) *Tees {
 	if X == nil {
 		return New(nil)
 	}
-	newl := New(X.CVs())
+
+	l := New(X.CVs())
 	if Y != nil {
 		for x := X.Front(); x != nil; x = x.Next() {
 			for y := Y.Front(); y != nil; y = y.Next() {
-				newl.PushBack(x.With(y))
+				l.PushBack(x.With(y))
 			}
 		}
-		newl.Root().Value = X.With(Y)
+		l.Root().Value = X.With(Y)
 	}
-	return newl
+	return l
 }
