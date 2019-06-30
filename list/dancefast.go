@@ -15,18 +15,24 @@ package list
 
 // DanceFast l is where the dancing begins
 func (l *List) DanceFast(d *Dancing) {
+	var r, ri *Element
+	var xa, ya, yr  *Element
 	var a, p, n *Element
 
+	r = &l.root
 	{
 		{
 			{
-				a = l.root.away
+				ri = r
+				a = ri.away
 				p, n = a.prev, a.next
 				n.prev, p.next = p, n
 				a.list.len--
-				for y := l.root.next; y != &l.root; y = y.next {
-					for z := y.away.next; z != y.away; z = z.next {
-						if z.list == nil || z != &l.root.list.root {
+				for y := ri.next; y != ri; y = y.next {
+					ya = y.away
+					yr = &ya.list.root
+					for z := ya.next; z != ya; z = z.next {
+						if z.list == nil || z != yr {
 							a = z.away
 							p, n = a.prev, a.next
 							n.prev, p.next = p, n
@@ -37,17 +43,21 @@ func (l *List) DanceFast(d *Dancing) {
 			}
 		}
 	}
-	for x := l.root.next; x != &l.root; x = x.next {
+	for x := r.next; x != r; x = x.next {
 		d.OnGoal(x) // Push
-		for i := x.away.next; i != x.away; i = i.next {
-			if i.list == nil || i != &x.away.list.root {
-				a = i.away.list.root.away
+		xa = x.away
+		for i := xa.next; i != xa; i = i.next {
+			if i.list == nil || i != &xa.list.root {
+				ri = &i.away.list.root
+				a = ri.away
 				p, n = a.prev, a.next
 				n.prev, p.next = p, n
 				a.list.len--
-				for y := i.away.list.root.next; y != &i.away.list.root; y = y.next {
-					for z := y.away.next; z != y.away; z = z.next {
-						if z.list == nil || z != &y.away.list.root {
+				for y := ri.next; y != ri; y = y.next {
+					ya = y.away
+					yr = &ya.list.root
+					for z := ya.next; z != ya; z = z.next {
+						if z.list == nil || z != yr {
 							a = z.away
 							p, n = a.prev, a.next
 							n.prev, p.next = p, n
@@ -58,11 +68,14 @@ func (l *List) DanceFast(d *Dancing) {
 			}
 		}
 		d.Dance() // Dance d is where the dancing recurs to
-		for i := x.away.prev; i != x.away; i = i.prev {
-			if i.list == nil || i != &x.away.list.root {
-				for y := i.away.list.root.prev; y != &i.away.list.root; y = y.prev {
-					for z := y.away.prev; z != y.away; z = z.prev {
-						if z.list == nil || z != &y.away.list.root {
+		for i := xa.prev; i != xa; i = i.prev {
+			if i.list == nil || i != &xa.list.root {
+				ri = &i.away.list.root
+				for y := ri.prev; y != ri; y = y.prev {
+					ya = y.away
+					yr = &ya.list.root
+					for z := ya.prev; z != ya; z = z.prev {
+						if z.list == nil || z != yr {
 							a = z.away
 							p, n = a.prev, a.next
 							n.prev, p.next = a, a
@@ -70,7 +83,7 @@ func (l *List) DanceFast(d *Dancing) {
 						}
 					}
 				}
-				a = i.away.list.root.away
+				a = ri.away
 				p, n = a.prev, a.next
 				n.prev, p.next = a, a
 				a.list.len++
@@ -81,9 +94,12 @@ func (l *List) DanceFast(d *Dancing) {
 	{
 		{
 			{
-				for y := l.root.prev; y != &l.root; y = y.prev {
-					for z := y.away.prev; z != y.away; z = z.prev {
-						if z.list == nil || z != &y.away.list.root {
+				ri = r
+				for y := ri.prev; y != ri; y = y.prev {
+					ya = y.away
+					yr = &ya.list.root
+					for z := ya.prev; z != ya; z = z.prev {
+						if z.list == nil || z != yr {
 							a = z.away
 							p, n = a.prev, a.next
 							n.prev, p.next = a, a
@@ -91,7 +107,7 @@ func (l *List) DanceFast(d *Dancing) {
 						}
 					}
 				}
-				a = l.root.away
+				a = ri.away
 				p, n = a.prev, a.next
 				n.prev, p.next = a, a
 				a.list.len++
