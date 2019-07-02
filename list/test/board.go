@@ -5,6 +5,7 @@
 package test
 
 import (
+	"github.com/GoLangsam/do/id"
 	"github.com/GoLangsam/tees/list"
 )
 
@@ -15,11 +16,11 @@ func Board(N, M int) *list.List {
 	var r = list.NewList("Ranks")
 	var f = list.NewList("Files")
 
-	for _, id := range IDs("R-", N) {
+	for _, id := range id.S("R-", N) {
 		r.AddBeam(id)
 	}
 	var rc = r.AwayLists()
-	for _, id := range IDs("F-", M) {
+	for _, id := range id.S("F-", M) {
 		f.AddJunk(id, rc...)
 	}
 

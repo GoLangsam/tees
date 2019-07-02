@@ -5,6 +5,7 @@
 package test
 
 import (
+	"github.com/GoLangsam/do/id"
 	"github.com/GoLangsam/tees"
 	"github.com/GoLangsam/tees/list"
 )
@@ -16,7 +17,7 @@ func Stick(N int) *list.List {
 	var list = tees.New("Stick")
 	list.Join(list)
 
-	for _, id := range IDs("S-", N) {
+	for _, id := range id.S("S-", N) {
 		list.PushBack(id)
 	}
 
@@ -34,10 +35,10 @@ func Ladder(N int) *list.List {
 	var rigt = tees.New("Right")
 	left.Join(rigt)
 
-	for _, id := range IDs("L-", N) {
+	for _, id := range id.S("L-", N) {
 		left.PushBack(id)
 	}
-	for _, id := range IDs("R-", N) {
+	for _, id := range id.S("R-", N) {
 		rigt.PushBack(id)
 	}
 

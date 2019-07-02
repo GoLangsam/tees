@@ -5,6 +5,7 @@
 package test
 
 import (
+	"github.com/GoLangsam/do/id"
 	"github.com/GoLangsam/tees/list"
 )
 
@@ -16,16 +17,16 @@ func NQueensR(N int) *list.List {
 	var a = list.NewList("DiagA")
 	var b = list.NewList("DiagB")
 
-	for _, id := range IDs("R-", N) {
+	for _, id := range id.S("R-", N) {
 		r.AddBeam(id)
 	}
-	for _, id := range IDs("F-", N) {
+	for _, id := range id.S("F-", N) {
 		f.AddBeam(id)
 	}
-	for _, id := range IDs("A-", 2*N-1) {
+	for _, id := range id.S("A-", 2*N-1) {
 		a.AddBeam(id)
 	}
-	for _, id := range IDs("B-", 2*N-1) {
+	for _, id := range id.S("B-", 2*N-1) {
 		b.AddBeam(id)
 	}
 
