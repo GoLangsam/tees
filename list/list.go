@@ -36,7 +36,7 @@ type Element struct {
 
 // Next returns the next list element or nil.
 func (e *Element) Next() *Element {
-	if p := e.next; e.list != nil && p != &e.list.root {
+	if p := e.next; e.list == nil || p != &e.list.root {
 		return p
 	}
 	return nil
@@ -44,7 +44,7 @@ func (e *Element) Next() *Element {
 
 // Prev returns the previous list element or nil.
 func (e *Element) Prev() *Element {
-	if p := e.prev; e.list != nil && p != &e.list.root {
+	if p := e.prev; e.list == nil || p != &e.list.root {
 		return p
 	}
 	return nil
@@ -120,7 +120,7 @@ func (l *List) remove(e *Element) *Element {
 	e.next.prev = e.prev
 	e.next = nil // avoid memory leaks
 	e.prev = nil // avoid memory leaks
-	//away = nil // no touch: MoveXyz functions use 'removes' followed by 'insert'
+	e.away = nil // MoveXyz functions do not use 'remove' followed by 'insert' any more
 	e.list = nil
 	l.len--
 	return e
@@ -151,7 +151,6 @@ func (l *List) Remove(e *Element) interface{} {
 		// if e.list == l, l must have been initialized when e was inserted
 		// in l or l == nil (e is a zero Element) and l.remove will crash
 		l.remove(e)
-		e.away = nil // avoid memory leaks
 	}
 	return e.Value
 }
